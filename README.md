@@ -4,6 +4,8 @@ A next-generation design system, built against the failure modes of MUI, Ant Des
 
 > A *tessera* is a single tile in a mosaic: small, stable parts composing a whole.
 
+**📖 Documentation & live playground: https://amit641.github.io/tessera**
+
 ![Tessera](./assets/tessera-logo.png)
 
 ## The problems with today's libraries
