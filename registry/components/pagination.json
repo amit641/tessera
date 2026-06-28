@@ -1,0 +1,22 @@
+{
+  "name": "pagination",
+  "displayName": "Pagination",
+  "version": "0.1.0",
+  "description": "Page navigation with sibling windows and ellipsis collapsing (logic lives in @tessera/core).",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "pagination.tsx",
+      "hash": "114e496387f42534",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { paginationAnatomy, paginationRange } from \"@tessera/core\";\nimport { useControllableState } from \"../utils/hooks\";\n\nexport interface PaginationProps {\n  /** Total number of pages. */\n  count: number;\n  page?: number;\n  defaultPage?: number;\n  onPageChange?: (page: number) => void;\n  /** Pages shown on each side of the current page. Default 1. */\n  siblings?: number;\n}\n\nexport function Pagination({\n  count,\n  page,\n  defaultPage = 1,\n  onPageChange,\n  siblings = 1,\n}: PaginationProps) {\n  const [current, setPage] = useControllableState({\n    value: page,\n    defaultValue: defaultPage,\n    onChange: onPageChange,\n  });\n  const entries = paginationRange(current, count, siblings);\n\n  return (\n    <nav {...paginationAnatomy.attrs(\"root\")} aria-label=\"Pagination\">\n      <ul {...paginationAnatomy.attrs(\"list\")}>\n        <li>\n          <button\n            type=\"button\"\n            {...paginationAnatomy.attrs(\"prev\")}\n            aria-label=\"Previous page\"\n            disabled={current <= 1}\n            onClick={() => setPage(current - 1)}\n          >\n            ‹\n          </button>\n        </li>\n        {entries.map((entry, index) =>\n          entry === \"ellipsis\" ? (\n            <li key={`ellipsis-${index}`}>\n              <span {...paginationAnatomy.attrs(\"ellipsis\")} aria-hidden>\n                …\n              </span>\n            </li>\n          ) : (\n            <li key={entry}>\n              <button\n                type=\"button\"\n                {...paginationAnatomy.attrs(\"item\")}\n                aria-label={`Page ${entry}`}\n                aria-current={entry === current ? \"page\" : undefined}\n                onClick={() => setPage(entry)}\n              >\n                {entry}\n              </button>\n            </li>\n          )\n        )}\n        <li>\n          <button\n            type=\"button\"\n            {...paginationAnatomy.attrs(\"next\")}\n            aria-label=\"Next page\"\n            disabled={current >= count}\n            onClick={() => setPage(current + 1)}\n          >\n            ›\n          </button>\n        </li>\n      </ul>\n    </nav>\n  );\n}\n"
+    },
+    {
+      "path": "pagination.css",
+      "hash": "8520aa8f5c95b6b6",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"pagination\"][data-part=\"list\"] {\n    display: flex;\n    align-items: center;\n    gap: var(--ts-space-1);\n    margin: 0;\n    padding: 0;\n    list-style: none;\n  }\n\n  [data-scope=\"pagination\"][data-part=\"item\"],\n  [data-scope=\"pagination\"][data-part=\"prev\"],\n  [data-scope=\"pagination\"][data-part=\"next\"] {\n    appearance: none;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 2rem;\n    height: 2rem;\n    padding: 0 var(--ts-space-2);\n    border: 1px solid transparent;\n    border-radius: var(--ts-radius-md);\n    background: transparent;\n    color: var(--ts-fg-muted);\n    font-size: var(--ts-font-size-sm);\n    font-variant-numeric: tabular-nums;\n    cursor: pointer;\n  }\n\n  [data-scope=\"pagination\"] [data-part=\"item\"]:hover:not(:disabled),\n  [data-scope=\"pagination\"] [data-part=\"prev\"]:hover:not(:disabled),\n  [data-scope=\"pagination\"] [data-part=\"next\"]:hover:not(:disabled) {\n    background: var(--ts-bg-subtle);\n    color: var(--ts-fg-default);\n  }\n\n  [data-scope=\"pagination\"][data-part=\"item\"][aria-current=\"page\"] {\n    background: var(--ts-accent-default);\n    border-color: var(--ts-accent-default);\n    color: var(--ts-fg-onAccent);\n    font-weight: var(--ts-font-weight-semibold);\n  }\n\n  [data-scope=\"pagination\"][data-part=\"ellipsis\"] {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    min-width: 2rem;\n    height: 2rem;\n    color: var(--ts-fg-subtle);\n    user-select: none;\n  }\n}\n"
+    }
+  ]
+}

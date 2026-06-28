@@ -1,0 +1,22 @@
+{
+  "name": "badge",
+  "displayName": "Badge",
+  "version": "0.1.0",
+  "description": "Compact status label with tone and variant axes.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "badge.tsx",
+      "hash": "c788503a31d26366",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { badgeAnatomy } from \"@tessera/core\";\n\nexport interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {\n  variant?: \"subtle\" | \"solid\" | \"outline\";\n  tone?: \"accent\" | \"neutral\" | \"success\" | \"warning\" | \"danger\";\n}\n\nexport const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(function Badge(\n  { variant = \"subtle\", tone = \"accent\", children, ...rest },\n  ref\n) {\n  return (\n    <span\n      {...badgeAnatomy.attrs(\"root\")}\n      data-variant={variant}\n      data-tone={tone}\n      ref={ref}\n      {...rest}\n    >\n      {children}\n    </span>\n  );\n});\n"
+    },
+    {
+      "path": "badge.css",
+      "hash": "652b79c5516d53f7",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"badge\"][data-part=\"root\"] {\n    --badge-bg: var(--ts-accent-subtle);\n    --badge-fg: var(--ts-accent-fg);\n    --badge-border: transparent;\n\n    display: inline-flex;\n    align-items: center;\n    gap: var(--ts-space-1);\n    border: 1px solid var(--badge-border);\n    border-radius: var(--ts-radius-full);\n    background: var(--badge-bg);\n    color: var(--badge-fg);\n    font-size: var(--ts-font-size-xs);\n    font-weight: var(--ts-font-weight-medium);\n    line-height: 1;\n    padding: 3px var(--ts-space-2);\n    white-space: nowrap;\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-tone=\"neutral\"] {\n    --badge-bg: var(--ts-bg-subtle);\n    --badge-fg: var(--ts-fg-muted);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-tone=\"success\"] {\n    --badge-bg: var(--ts-success-subtle);\n    --badge-fg: var(--ts-success-fg);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-tone=\"warning\"] {\n    --badge-bg: var(--ts-warning-subtle);\n    --badge-fg: var(--ts-warning-fg);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-tone=\"danger\"] {\n    --badge-bg: var(--ts-danger-subtle);\n    --badge-fg: var(--ts-danger-fg);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-variant=\"solid\"] {\n    --badge-bg: var(--ts-accent-default);\n    --badge-fg: var(--ts-fg-onAccent);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-variant=\"solid\"][data-tone=\"danger\"] {\n    --badge-bg: var(--ts-danger-default);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-variant=\"solid\"][data-tone=\"success\"] {\n    --badge-bg: var(--ts-success-default);\n    --badge-fg: var(--ts-fg-onAccent);\n  }\n\n  [data-scope=\"badge\"][data-part=\"root\"][data-variant=\"outline\"] {\n    --badge-bg: transparent;\n    --badge-border: currentColor;\n  }\n}\n"
+    }
+  ]
+}

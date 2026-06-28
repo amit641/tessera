@@ -1,0 +1,22 @@
+{
+  "name": "skeleton",
+  "displayName": "Skeleton",
+  "version": "0.1.0",
+  "description": "Loading placeholder with text/circle/rect variants and reduced-motion support.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "skeleton.tsx",
+      "hash": "2bcae28d59892ef4",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { skeletonAnatomy } from \"@tessera/core\";\n\nexport interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {\n  variant?: \"rect\" | \"text\" | \"circle\";\n  width?: number | string;\n  height?: number | string;\n}\n\nexport const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function Skeleton(\n  { variant = \"rect\", width, height, style, ...rest },\n  ref\n) {\n  return (\n    <div\n      {...skeletonAnatomy.attrs(\"root\")}\n      data-variant={variant}\n      aria-hidden\n      style={{ width, height, ...style }}\n      ref={ref}\n      {...rest}\n    />\n  );\n});\n"
+    },
+    {
+      "path": "skeleton.css",
+      "hash": "a916c3aa02c97b16",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"skeleton\"][data-part=\"root\"] {\n    display: block;\n    background: var(--ts-bg-muted);\n    border-radius: var(--ts-radius-md);\n    animation: tessera-pulse 1.6s var(--ts-easing-standard) infinite;\n  }\n\n  [data-scope=\"skeleton\"][data-part=\"root\"][data-variant=\"text\"] {\n    height: 0.9em;\n    border-radius: var(--ts-radius-sm);\n  }\n\n  [data-scope=\"skeleton\"][data-part=\"root\"][data-variant=\"circle\"] {\n    border-radius: var(--ts-radius-full);\n  }\n\n  @keyframes tessera-pulse {\n    0%,\n    100% {\n      opacity: 1;\n    }\n    50% {\n      opacity: 0.45;\n    }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    [data-scope=\"skeleton\"][data-part=\"root\"] {\n      animation: none;\n    }\n  }\n}\n"
+    }
+  ]
+}

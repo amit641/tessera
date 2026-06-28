@@ -1,0 +1,91 @@
+{
+  "name": "dialog",
+  "displayName": "Dialog",
+  "version": "0.1.0",
+  "import": "import { Dialog, useDialog } from \"@tessera/react\";",
+  "description": "Modal dialog driven by a core state machine; focus trap, scroll lock, Escape and backdrop dismissal handled automatically.",
+  "anatomy": [
+    {
+      "part": "trigger",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "backdrop",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "positioner",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div[role=dialog]",
+      "stable": true
+    },
+    {
+      "part": "title",
+      "element": "h2",
+      "stable": true
+    },
+    {
+      "part": "description",
+      "element": "p",
+      "stable": true
+    },
+    {
+      "part": "close",
+      "element": "button",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.open / defaultOpen",
+      "type": "boolean",
+      "description": "Controlled / uncontrolled."
+    },
+    {
+      "name": "Root.onOpenChange",
+      "type": "(open: boolean) => void"
+    },
+    {
+      "name": "Content.closeOnOutsideClick",
+      "type": "boolean",
+      "default": "true"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "dialog with aria-modal"
+    ],
+    "keyboard": [
+      {
+        "key": "Escape",
+        "action": "closes"
+      },
+      {
+        "key": "Tab",
+        "action": "cycles within the dialog (focus trap)"
+      }
+    ],
+    "notes": [
+      "aria-labelledby/aria-describedby wired to Title/Description automatically.",
+      "Focus returns to the previously focused element on close."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"dialog\"][data-part=\"content\"]"
+    ],
+    "stateAttributes": [
+      "data-state=open"
+    ]
+  },
+  "examples": [
+    "<Dialog.Root>\n  <Dialog.Trigger>Delete account</Dialog.Trigger>\n  <Dialog.Content>\n    <Dialog.Title>Are you sure?</Dialog.Title>\n    <Dialog.Description>This cannot be undone.</Dialog.Description>\n    <Dialog.Close />\n  </Dialog.Content>\n</Dialog.Root>"
+  ],
+  "category": "overlay"
+}

@@ -1,0 +1,58 @@
+@layer tessera.recipes {
+  [data-scope="table"][data-part="root"] {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--ts-border-muted);
+    border-radius: var(--ts-radius-lg);
+  }
+
+  [data-scope="table"][data-part="table"] {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--ts-font-size-sm);
+    color: var(--ts-fg-default);
+  }
+
+  [data-scope="table"][data-part="caption"] {
+    caption-side: bottom;
+    padding: var(--ts-space-3);
+    font-size: var(--ts-font-size-xs);
+    color: var(--ts-fg-subtle);
+    text-align: left;
+  }
+
+  [data-scope="table"][data-part="head"] {
+    text-align: left;
+    font-weight: var(--ts-font-weight-medium);
+    font-size: var(--ts-font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ts-fg-subtle);
+    background: var(--ts-bg-surface);
+    padding: var(--ts-space-3) var(--ts-space-4);
+    border-bottom: 1px solid var(--ts-border-muted);
+    white-space: nowrap;
+  }
+
+  [data-scope="table"][data-part="cell"] {
+    padding: var(--ts-space-3) var(--ts-space-4);
+    border-bottom: 1px solid var(--ts-border-muted);
+    vertical-align: middle;
+  }
+
+  [data-scope="table"][data-part="body"] [data-part="row"]:last-child [data-part="cell"] {
+    border-bottom: none;
+  }
+
+  [data-scope="table"][data-part="root"][data-striped]
+    [data-part="body"]
+    [data-part="row"]:nth-child(even) {
+    background: var(--ts-bg-surface);
+  }
+
+  [data-scope="table"][data-part="root"][data-hoverable]
+    [data-part="body"]
+    [data-part="row"]:hover {
+    background: var(--ts-bg-subtle);
+  }
+}

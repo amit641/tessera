@@ -1,0 +1,22 @@
+{
+  "name": "breadcrumb",
+  "displayName": "Breadcrumb",
+  "version": "0.1.0",
+  "description": "Navigation trail; the last item is marked aria-current=page automatically.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "breadcrumb.tsx",
+      "hash": "087e36d97d8c506f",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { breadcrumbAnatomy } from \"@tessera/core\";\n\nexport interface BreadcrumbItem {\n  label: string;\n  href?: string;\n}\n\nexport interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {\n  /** Ordered trail; the last item is the current page (aria-current). */\n  items: BreadcrumbItem[];\n  separator?: React.ReactNode;\n}\n\nexport const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(function Breadcrumb(\n  { items, separator = \"/\", ...rest },\n  ref\n) {\n  return (\n    <nav {...breadcrumbAnatomy.attrs(\"root\")} aria-label=\"Breadcrumb\" ref={ref} {...rest}>\n      <ol {...breadcrumbAnatomy.attrs(\"list\")}>\n        {items.map((item, index) => {\n          const isCurrent = index === items.length - 1;\n          return (\n            <li key={`${item.label}-${index}`} {...breadcrumbAnatomy.attrs(\"item\")}>\n              <a\n                {...breadcrumbAnatomy.attrs(\"link\")}\n                href={isCurrent ? undefined : item.href}\n                aria-current={isCurrent ? \"page\" : undefined}\n              >\n                {item.label}\n              </a>\n              {!isCurrent && (\n                <span {...breadcrumbAnatomy.attrs(\"separator\")} aria-hidden>\n                  {separator}\n                </span>\n              )}\n            </li>\n          );\n        })}\n      </ol>\n    </nav>\n  );\n});\n"
+    },
+    {
+      "path": "breadcrumb.css",
+      "hash": "80602af3faf6b86a",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"breadcrumb\"][data-part=\"list\"] {\n    display: flex;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: var(--ts-space-1);\n    margin: 0;\n    padding: 0;\n    list-style: none;\n    font-size: var(--ts-font-size-sm);\n  }\n\n  [data-scope=\"breadcrumb\"][data-part=\"item\"] {\n    display: inline-flex;\n    align-items: center;\n    gap: var(--ts-space-1);\n  }\n\n  [data-scope=\"breadcrumb\"][data-part=\"link\"] {\n    color: var(--ts-fg-muted);\n    text-decoration: none;\n    border-radius: var(--ts-radius-sm);\n    padding: 2px var(--ts-space-1);\n  }\n\n  [data-scope=\"breadcrumb\"][data-part=\"link\"]:hover {\n    color: var(--ts-fg-default);\n    text-decoration: underline;\n  }\n\n  [data-scope=\"breadcrumb\"][data-part=\"link\"][aria-current=\"page\"] {\n    color: var(--ts-fg-default);\n    font-weight: var(--ts-font-weight-medium);\n    text-decoration: none;\n    cursor: default;\n  }\n\n  [data-scope=\"breadcrumb\"][data-part=\"separator\"] {\n    display: inline-flex;\n    color: var(--ts-fg-subtle);\n    user-select: none;\n  }\n}\n"
+    }
+  ]
+}

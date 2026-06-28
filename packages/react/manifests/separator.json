@@ -1,0 +1,46 @@
+{
+  "name": "separator",
+  "displayName": "Separator",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Separator } from \"@tessera/react\";",
+  "description": "Horizontal or vertical rule with proper separator semantics.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "orientation",
+      "type": "\"horizontal\" | \"vertical\"",
+      "default": "\"horizontal\""
+    },
+    {
+      "name": "decorative",
+      "type": "boolean",
+      "default": "false",
+      "description": "Hides from assistive tech when purely visual."
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "separator"
+    ],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"separator\"][data-part=\"root\"]"
+    ],
+    "stateAttributes": [
+      "data-orientation"
+    ]
+  },
+  "examples": [
+    "<Separator />"
+  ]
+}

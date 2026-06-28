@@ -1,0 +1,65 @@
+{
+  "name": "avatar",
+  "displayName": "Avatar",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Avatar } from \"@tessera/react\";",
+  "description": "Image avatar with automatic initials fallback when the image is missing or fails to load.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "image",
+      "element": "img",
+      "stable": true
+    },
+    {
+      "part": "fallback",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": "Used for alt text and fallback initials."
+    },
+    {
+      "name": "src",
+      "type": "string"
+    },
+    {
+      "name": "size",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "default": "\"md\""
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "img (fallback)"
+    ],
+    "keyboard": [],
+    "notes": [
+      "Fallback initials derive from the first and last word of name."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"avatar\"][data-part=\"root\"]"
+    ],
+    "componentTokens": [
+      "--avatar-size"
+    ],
+    "stateAttributes": [
+      "data-size"
+    ]
+  },
+  "examples": [
+    "<Avatar name=\"Ada Lovelace\" src=\"/ada.png\" />"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "name": "pagination",
+  "displayName": "Pagination",
+  "version": "0.1.0",
+  "category": "navigation",
+  "import": "import { Pagination } from \"@tessera/react\";",
+  "description": "Page navigation with sibling windows and ellipsis collapsing (logic lives in @tessera/core).",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "nav",
+      "stable": true
+    },
+    {
+      "part": "list",
+      "element": "ul",
+      "stable": true
+    },
+    {
+      "part": "item",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "ellipsis",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "prev",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "next",
+      "element": "button",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "count",
+      "type": "number",
+      "required": true,
+      "description": "Total pages."
+    },
+    {
+      "name": "page / defaultPage",
+      "type": "number"
+    },
+    {
+      "name": "onPageChange",
+      "type": "(page: number) => void"
+    },
+    {
+      "name": "siblings",
+      "type": "number",
+      "default": "1"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "navigation"
+    ],
+    "keyboard": [],
+    "notes": [
+      "Current page is marked aria-current=page."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"pagination\"][data-part=\"item\"]"
+    ],
+    "stateAttributes": [
+      "aria-current=\"page\""
+    ]
+  },
+  "examples": [
+    "<Pagination count={20} defaultPage={7} onPageChange={load} />"
+  ]
+}

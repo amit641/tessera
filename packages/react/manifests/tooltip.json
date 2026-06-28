@@ -1,0 +1,76 @@
+{
+  "name": "tooltip",
+  "displayName": "Tooltip",
+  "version": "0.1.0",
+  "import": "import { Tooltip } from \"@tessera/react\";",
+  "description": "Hover/focus tooltip with hover-intent delays driven by a four-state core machine (no flicker on quick re-entry).",
+  "anatomy": [
+    {
+      "part": "trigger",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "positioner",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div[role=tooltip]",
+      "stable": true
+    },
+    {
+      "part": "arrow",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.openDelay",
+      "type": "number",
+      "default": "600"
+    },
+    {
+      "name": "Root.closeDelay",
+      "type": "number",
+      "default": "200"
+    },
+    {
+      "name": "Root.placement",
+      "type": "Placement (floating-ui)",
+      "default": "\"top\""
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "tooltip"
+    ],
+    "keyboard": [
+      {
+        "key": "Focus",
+        "action": "opens immediately (no delay)"
+      },
+      {
+        "key": "Escape",
+        "action": "closes"
+      }
+    ],
+    "notes": [
+      "Trigger gets aria-describedby while the tooltip is open."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"tooltip\"][data-part=\"content\"]"
+    ],
+    "stateAttributes": [
+      "data-state=open"
+    ]
+  },
+  "examples": [
+    "<Tooltip.Root>\n  <Tooltip.Trigger>?</Tooltip.Trigger>\n  <Tooltip.Content>More information</Tooltip.Content>\n</Tooltip.Root>"
+  ],
+  "category": "overlay"
+}

@@ -1,0 +1,65 @@
+@layer tessera.recipes {
+  [data-scope="radio-group"][data-part="root"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ts-space-2);
+  }
+
+  [data-scope="radio-group"][data-part="root"][data-orientation="horizontal"] {
+    flex-direction: row;
+    gap: var(--ts-space-4);
+  }
+
+  [data-scope="radio-group"][data-part="label"] {
+    font-size: var(--ts-font-size-sm);
+    font-weight: var(--ts-font-weight-medium);
+    color: var(--ts-fg-default);
+  }
+
+  [data-scope="radio-group"][data-part="item"] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+    cursor: pointer;
+  }
+
+  [data-scope="radio-group"][data-part="item"][data-disabled] {
+    cursor: not-allowed;
+  }
+
+  [data-scope="radio-group"][data-part="control"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid var(--ts-border-strong);
+    border-radius: var(--ts-radius-full);
+    background: var(--ts-bg-surface);
+    flex-shrink: 0;
+    transition: border-color var(--ts-duration-fast) var(--ts-easing-standard);
+  }
+
+  [data-scope="radio-group"][data-part="control"][data-state="checked"] {
+    border-color: var(--ts-accent-default);
+  }
+
+  [data-scope="radio-group"][data-part="indicator"] {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--ts-radius-full);
+    background: var(--ts-accent-default);
+    transform: scale(0);
+    transition: transform var(--ts-duration-fast) var(--ts-easing-standard);
+  }
+
+  [data-scope="radio-group"][data-part="control"][data-state="checked"] [data-part="indicator"] {
+    transform: scale(1);
+  }
+
+  [data-scope="radio-group"][data-part="itemLabel"] {
+    font-size: var(--ts-font-size-sm);
+    color: var(--ts-fg-default);
+    user-select: none;
+  }
+}

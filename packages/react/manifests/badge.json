@@ -1,0 +1,51 @@
+{
+  "name": "badge",
+  "displayName": "Badge",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Badge } from \"@tessera/react\";",
+  "description": "Compact status label with tone and variant axes.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"subtle\" | \"solid\" | \"outline\"",
+      "default": "\"subtle\""
+    },
+    {
+      "name": "tone",
+      "type": "\"accent\" | \"neutral\" | \"success\" | \"warning\" | \"danger\"",
+      "default": "\"accent\""
+    }
+  ],
+  "a11y": {
+    "roles": [],
+    "keyboard": [],
+    "notes": [
+      "Purely presentational; pair with visually-hidden text if the color conveys meaning."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"badge\"][data-part=\"root\"]"
+    ],
+    "componentTokens": [
+      "--badge-bg",
+      "--badge-fg",
+      "--badge-border"
+    ],
+    "stateAttributes": [
+      "data-variant",
+      "data-tone"
+    ]
+  },
+  "examples": [
+    "<Badge tone=\"success\">Active</Badge>"
+  ]
+}

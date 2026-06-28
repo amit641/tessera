@@ -1,0 +1,59 @@
+@layer tessera.recipes {
+  [data-scope="badge"][data-part="root"] {
+    --badge-bg: var(--ts-accent-subtle);
+    --badge-fg: var(--ts-accent-fg);
+    --badge-border: transparent;
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-1);
+    border: 1px solid var(--badge-border);
+    border-radius: var(--ts-radius-full);
+    background: var(--badge-bg);
+    color: var(--badge-fg);
+    font-size: var(--ts-font-size-xs);
+    font-weight: var(--ts-font-weight-medium);
+    line-height: 1;
+    padding: 3px var(--ts-space-2);
+    white-space: nowrap;
+  }
+
+  [data-scope="badge"][data-part="root"][data-tone="neutral"] {
+    --badge-bg: var(--ts-bg-subtle);
+    --badge-fg: var(--ts-fg-muted);
+  }
+
+  [data-scope="badge"][data-part="root"][data-tone="success"] {
+    --badge-bg: var(--ts-success-subtle);
+    --badge-fg: var(--ts-success-fg);
+  }
+
+  [data-scope="badge"][data-part="root"][data-tone="warning"] {
+    --badge-bg: var(--ts-warning-subtle);
+    --badge-fg: var(--ts-warning-fg);
+  }
+
+  [data-scope="badge"][data-part="root"][data-tone="danger"] {
+    --badge-bg: var(--ts-danger-subtle);
+    --badge-fg: var(--ts-danger-fg);
+  }
+
+  [data-scope="badge"][data-part="root"][data-variant="solid"] {
+    --badge-bg: var(--ts-accent-default);
+    --badge-fg: var(--ts-fg-onAccent);
+  }
+
+  [data-scope="badge"][data-part="root"][data-variant="solid"][data-tone="danger"] {
+    --badge-bg: var(--ts-danger-default);
+  }
+
+  [data-scope="badge"][data-part="root"][data-variant="solid"][data-tone="success"] {
+    --badge-bg: var(--ts-success-default);
+    --badge-fg: var(--ts-fg-onAccent);
+  }
+
+  [data-scope="badge"][data-part="root"][data-variant="outline"] {
+    --badge-bg: transparent;
+    --badge-border: currentColor;
+  }
+}

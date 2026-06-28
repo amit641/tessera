@@ -1,0 +1,22 @@
+{
+  "name": "tooltip",
+  "displayName": "Tooltip",
+  "version": "0.1.0",
+  "description": "Hover/focus tooltip with hover-intent delays driven by a four-state core machine (no flicker on quick re-entry).",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "tooltip.tsx",
+      "hash": "9d697262c2bf6a93",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport {\n  autoUpdate,\n  flip,\n  offset,\n  shift,\n  useFloating,\n  type Placement,\n} from \"@floating-ui/react-dom\";\nimport { createTooltipMachine, tooltipAnatomy, type TooltipMachine } from \"@tessera/core\";\nimport { createStrictContext, useExternalState } from \"../utils/hooks\";\nimport { Portal } from \"../utils/portal\";\n\ninterface TooltipContextValue {\n  machine: TooltipMachine;\n  open: boolean;\n  contentId: string;\n  placement: Placement;\n  triggerRef: React.MutableRefObject<HTMLElement | null>;\n}\n\nconst [TooltipProvider, useTooltipContext] = createStrictContext<TooltipContextValue>(\"Tooltip\");\n\nexport interface TooltipRootProps {\n  openDelay?: number;\n  closeDelay?: number;\n  placement?: Placement;\n  children: React.ReactNode;\n}\n\nfunction TooltipRoot({ openDelay, closeDelay, placement = \"top\", children }: TooltipRootProps) {\n  const [machine] = React.useState(() => createTooltipMachine({ openDelay, closeDelay }));\n  React.useEffect(() => () => machine.stop(), [machine]);\n\n  const state = useExternalState(machine);\n  const contentId = React.useId();\n  const triggerRef = React.useRef<HTMLElement | null>(null);\n  const open = state.value === \"open\" || state.value === \"closing\";\n\n  return (\n    <TooltipProvider value={{ machine, open, contentId, placement, triggerRef }}>\n      {children}\n    </TooltipProvider>\n  );\n}\n\nfunction TooltipTrigger({ children, ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {\n  const { machine, open, contentId, triggerRef } = useTooltipContext();\n  return (\n    <button\n      type=\"button\"\n      {...tooltipAnatomy.attrs(\"trigger\")}\n      aria-describedby={open ? contentId : undefined}\n      ref={(node) => {\n        triggerRef.current = node;\n      }}\n      onPointerEnter={() => machine.send(\"POINTER_ENTER\")}\n      onPointerLeave={() => machine.send(\"POINTER_LEAVE\")}\n      onFocus={() => machine.send(\"FOCUS\")}\n      onBlur={() => machine.send(\"BLUR\")}\n      onKeyDown={(event) => {\n        if (event.key === \"Escape\") machine.send(\"CLOSE\");\n      }}\n      {...rest}\n    >\n      {children}\n    </button>\n  );\n}\n\nfunction TooltipContent({ children, ...rest }: React.HTMLAttributes<HTMLDivElement>) {\n  const { machine, open, contentId, placement, triggerRef } = useTooltipContext();\n  const { refs, floatingStyles } = useFloating({\n    placement,\n    whileElementsMounted: autoUpdate,\n    middleware: [offset(6), flip(), shift({ padding: 8 })],\n    elements: { reference: triggerRef.current },\n  });\n\n  if (!open) return null;\n\n  return (\n    <Portal>\n      <div\n        {...tooltipAnatomy.attrs(\"positioner\")}\n        ref={refs.setFloating}\n        style={floatingStyles}\n        onPointerEnter={() => machine.send(\"POINTER_ENTER\")}\n        onPointerLeave={() => machine.send(\"POINTER_LEAVE\")}\n      >\n        <div {...tooltipAnatomy.attrs(\"content\")} role=\"tooltip\" id={contentId} data-state=\"open\" {...rest}>\n          {children}\n        </div>\n      </div>\n    </Portal>\n  );\n}\n\nexport const Tooltip = {\n  Root: TooltipRoot,\n  Trigger: TooltipTrigger,\n  Content: TooltipContent,\n};\n"
+    },
+    {
+      "path": "tooltip.css",
+      "hash": "91cc13bb4256cdf3",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"tooltip\"][data-part=\"positioner\"] {\n    z-index: var(--ts-z-tooltip);\n  }\n\n  [data-scope=\"tooltip\"][data-part=\"content\"] {\n    background: var(--ts-bg-inverted);\n    color: var(--ts-fg-inverted);\n    border-radius: var(--ts-radius-md);\n    padding: var(--ts-space-1) var(--ts-space-2);\n    font-size: var(--ts-font-size-xs);\n    font-weight: var(--ts-font-weight-medium);\n    max-width: 18rem;\n    box-shadow: var(--ts-shadow-sm);\n    animation: tessera-fade-in var(--ts-duration-fast) var(--ts-easing-enter);\n  }\n}\n"
+    }
+  ]
+}

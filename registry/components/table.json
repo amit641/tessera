@@ -1,0 +1,22 @@
+{
+  "name": "table",
+  "displayName": "Table",
+  "version": "0.1.0",
+  "description": "Composable data table: Root (scroll container), Header, Body, Row, Head, Cell, Caption.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "table.tsx",
+      "hash": "3bde7cf4bb9a006c",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { tableAnatomy } from \"@tessera/core\";\n\nexport interface TableRootProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Zebra-stripes the body rows. */\n  striped?: boolean;\n  /** Highlights body rows on hover. */\n  hoverable?: boolean;\n}\n\nfunction TableRoot({ striped, hoverable, children, ...rest }: TableRootProps) {\n  return (\n    <div\n      {...tableAnatomy.attrs(\"root\")}\n      data-striped={striped || undefined}\n      data-hoverable={hoverable || undefined}\n      {...rest}\n    >\n      <table {...tableAnatomy.attrs(\"table\")}>{children}</table>\n    </div>\n  );\n}\n\nfunction TableCaption(props: React.HTMLAttributes<HTMLTableCaptionElement>) {\n  return <caption {...tableAnatomy.attrs(\"caption\")} {...props} />;\n}\n\nfunction TableHeader(props: React.HTMLAttributes<HTMLTableSectionElement>) {\n  return <thead {...tableAnatomy.attrs(\"header\")} {...props} />;\n}\n\nfunction TableBody(props: React.HTMLAttributes<HTMLTableSectionElement>) {\n  return <tbody {...tableAnatomy.attrs(\"body\")} {...props} />;\n}\n\nfunction TableRow(props: React.HTMLAttributes<HTMLTableRowElement>) {\n  return <tr {...tableAnatomy.attrs(\"row\")} {...props} />;\n}\n\nfunction TableHead(props: React.ThHTMLAttributes<HTMLTableCellElement>) {\n  return <th {...tableAnatomy.attrs(\"head\")} scope=\"col\" {...props} />;\n}\n\nfunction TableCell(props: React.TdHTMLAttributes<HTMLTableCellElement>) {\n  return <td {...tableAnatomy.attrs(\"cell\")} {...props} />;\n}\n\nexport const Table = {\n  Root: TableRoot,\n  Caption: TableCaption,\n  Header: TableHeader,\n  Body: TableBody,\n  Row: TableRow,\n  Head: TableHead,\n  Cell: TableCell,\n};\n"
+    },
+    {
+      "path": "table.css",
+      "hash": "9f19244869ce49c6",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"table\"][data-part=\"root\"] {\n    width: 100%;\n    overflow-x: auto;\n    border: 1px solid var(--ts-border-muted);\n    border-radius: var(--ts-radius-lg);\n  }\n\n  [data-scope=\"table\"][data-part=\"table\"] {\n    width: 100%;\n    border-collapse: collapse;\n    font-size: var(--ts-font-size-sm);\n    color: var(--ts-fg-default);\n  }\n\n  [data-scope=\"table\"][data-part=\"caption\"] {\n    caption-side: bottom;\n    padding: var(--ts-space-3);\n    font-size: var(--ts-font-size-xs);\n    color: var(--ts-fg-subtle);\n    text-align: left;\n  }\n\n  [data-scope=\"table\"][data-part=\"head\"] {\n    text-align: left;\n    font-weight: var(--ts-font-weight-medium);\n    font-size: var(--ts-font-size-xs);\n    text-transform: uppercase;\n    letter-spacing: 0.05em;\n    color: var(--ts-fg-subtle);\n    background: var(--ts-bg-surface);\n    padding: var(--ts-space-3) var(--ts-space-4);\n    border-bottom: 1px solid var(--ts-border-muted);\n    white-space: nowrap;\n  }\n\n  [data-scope=\"table\"][data-part=\"cell\"] {\n    padding: var(--ts-space-3) var(--ts-space-4);\n    border-bottom: 1px solid var(--ts-border-muted);\n    vertical-align: middle;\n  }\n\n  [data-scope=\"table\"][data-part=\"body\"] [data-part=\"row\"]:last-child [data-part=\"cell\"] {\n    border-bottom: none;\n  }\n\n  [data-scope=\"table\"][data-part=\"root\"][data-striped]\n    [data-part=\"body\"]\n    [data-part=\"row\"]:nth-child(even) {\n    background: var(--ts-bg-surface);\n  }\n\n  [data-scope=\"table\"][data-part=\"root\"][data-hoverable]\n    [data-part=\"body\"]\n    [data-part=\"row\"]:hover {\n    background: var(--ts-bg-subtle);\n  }\n}\n"
+    }
+  ]
+}

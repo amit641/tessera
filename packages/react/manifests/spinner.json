@@ -1,0 +1,48 @@
+{
+  "name": "spinner",
+  "displayName": "Spinner",
+  "version": "0.1.0",
+  "category": "feedback",
+  "import": "import { Spinner } from \"@tessera/react\";",
+  "description": "Indeterminate loading indicator with an accessible label.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "size",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "default": "\"md\""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "default": "\"Loading\""
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "status"
+    ],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"spinner\"][data-part=\"root\"]"
+    ],
+    "componentTokens": [
+      "--spinner-size"
+    ],
+    "stateAttributes": [
+      "data-size"
+    ]
+  },
+  "examples": [
+    "<Spinner size=\"lg\" label=\"Loading results\" />"
+  ]
+}

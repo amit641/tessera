@@ -1,0 +1,63 @@
+{
+  "name": "card",
+  "displayName": "Card",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Card } from \"@tessera/react\";",
+  "description": "Composable surface: Root, Header, Title, Description, Content, Footer parts.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "header",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "title",
+      "element": "h3",
+      "stable": true
+    },
+    {
+      "part": "description",
+      "element": "p",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "footer",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.interactive",
+      "type": "boolean",
+      "description": "Hover affordance for clickable cards."
+    }
+  ],
+  "a11y": {
+    "roles": [],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"card\"][data-part=\"root\"]"
+    ],
+    "stateAttributes": [
+      "data-interactive"
+    ]
+  },
+  "examples": [
+    "<Card.Root>\n  <Card.Header>\n    <Card.Title>Usage</Card.Title>\n    <Card.Description>Last 30 days</Card.Description>\n  </Card.Header>\n  <Card.Content>...</Card.Content>\n  <Card.Footer><Button size=\"sm\">View report</Button></Card.Footer>\n</Card.Root>"
+  ]
+}

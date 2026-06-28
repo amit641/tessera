@@ -1,0 +1,22 @@
+{
+  "name": "avatar",
+  "displayName": "Avatar",
+  "version": "0.1.0",
+  "description": "Image avatar with automatic initials fallback when the image is missing or fails to load.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "avatar.tsx",
+      "hash": "b8ffb6a4c71ab8ff",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { avatarAnatomy } from \"@tessera/core\";\n\nexport interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {\n  /** Image URL. Falls back to initials when missing or failed to load. */\n  src?: string;\n  /** Person/entity name; used for alt text and fallback initials. */\n  name: string;\n  size?: \"sm\" | \"md\" | \"lg\";\n}\n\nfunction initials(name: string): string {\n  const parts = name.trim().split(/\\s+/);\n  const first = parts[0]?.[0] ?? \"\";\n  const last = parts.length > 1 ? parts[parts.length - 1][0] : \"\";\n  return (first + last).toUpperCase();\n}\n\nexport const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(\n  { src, name, size = \"md\", ...rest },\n  ref\n) {\n  const [failed, setFailed] = React.useState(false);\n  const showImage = src && !failed;\n\n  return (\n    <span {...avatarAnatomy.attrs(\"root\")} data-size={size} ref={ref} {...rest}>\n      {showImage ? (\n        <img\n          {...avatarAnatomy.attrs(\"image\")}\n          src={src}\n          alt={name}\n          onError={() => setFailed(true)}\n        />\n      ) : (\n        <span {...avatarAnatomy.attrs(\"fallback\")} role=\"img\" aria-label={name}>\n          {initials(name)}\n        </span>\n      )}\n    </span>\n  );\n});\n"
+    },
+    {
+      "path": "avatar.css",
+      "hash": "eb1dd36fd6472ceb",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"avatar\"][data-part=\"root\"] {\n    --avatar-size: 2.5rem;\n\n    position: relative;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: var(--avatar-size);\n    height: var(--avatar-size);\n    border-radius: var(--ts-radius-full);\n    background: var(--ts-bg-muted);\n    overflow: hidden;\n    flex-shrink: 0;\n    user-select: none;\n  }\n\n  [data-scope=\"avatar\"][data-part=\"root\"][data-size=\"sm\"] {\n    --avatar-size: 1.75rem;\n  }\n\n  [data-scope=\"avatar\"][data-part=\"root\"][data-size=\"lg\"] {\n    --avatar-size: 3.5rem;\n  }\n\n  [data-scope=\"avatar\"][data-part=\"image\"] {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n  }\n\n  [data-scope=\"avatar\"][data-part=\"fallback\"] {\n    font-size: calc(var(--avatar-size) * 0.38);\n    font-weight: var(--ts-font-weight-semibold);\n    color: var(--ts-accent-fg);\n    background: var(--ts-accent-subtle);\n    width: 100%;\n    height: 100%;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n  }\n}\n"
+    }
+  ]
+}

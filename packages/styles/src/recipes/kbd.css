@@ -1,0 +1,14 @@
+@layer tessera.recipes {
+  [data-scope="kbd"][data-part="root"] {
+    display: inline-block;
+    border: 1px solid var(--ts-border-default);
+    border-bottom-width: 2px;
+    border-radius: var(--ts-radius-sm);
+    background: var(--ts-bg-subtle);
+    color: var(--ts-fg-default);
+    font-family: var(--ts-font-family-mono);
+    font-size: var(--ts-font-size-xs);
+    line-height: 1;
+    padding: 3px 5px;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "switch",
+  "displayName": "Switch",
+  "version": "0.1.0",
+  "description": "On/off toggle backed by a native role=switch input.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "switch.tsx",
+      "hash": "117a468810236708",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { switchAnatomy } from \"@tessera/core\";\nimport { useControllableState } from \"../utils/hooks\";\n\nexport interface SwitchProps {\n  label: React.ReactNode;\n  checked?: boolean;\n  defaultChecked?: boolean;\n  onCheckedChange?: (checked: boolean) => void;\n  disabled?: boolean;\n  name?: string;\n  value?: string;\n}\n\nexport const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(\n  { label, checked, defaultChecked = false, onCheckedChange, disabled, name, value },\n  ref\n) {\n  const [isChecked, setChecked] = useControllableState({\n    value: checked,\n    defaultValue: defaultChecked,\n    onChange: onCheckedChange,\n  });\n  const state = isChecked ? \"checked\" : \"unchecked\";\n\n  return (\n    <label {...switchAnatomy.attrs(\"root\")} data-disabled={disabled || undefined}>\n      <input\n        type=\"checkbox\"\n        role=\"switch\"\n        data-visually-hidden=\"\"\n        ref={ref}\n        checked={isChecked}\n        onChange={(event) => setChecked(event.target.checked)}\n        disabled={disabled}\n        name={name}\n        value={value}\n      />\n      <span {...switchAnatomy.attrs(\"control\")} data-state={state} aria-hidden>\n        <span {...switchAnatomy.attrs(\"thumb\")} />\n      </span>\n      <span {...switchAnatomy.attrs(\"label\")}>{label}</span>\n    </label>\n  );\n});\n"
+    },
+    {
+      "path": "switch.css",
+      "hash": "323e3ec7f67d2522",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"switch\"][data-part=\"root\"] {\n    display: inline-flex;\n    align-items: center;\n    gap: var(--ts-space-2);\n    cursor: pointer;\n  }\n\n  [data-scope=\"switch\"][data-part=\"root\"][data-disabled] {\n    cursor: not-allowed;\n  }\n\n  [data-scope=\"switch\"][data-part=\"control\"] {\n    position: relative;\n    width: 2.25rem;\n    height: 1.25rem;\n    border-radius: var(--ts-radius-full);\n    background: var(--ts-bg-muted);\n    border: 1px solid transparent;\n    flex-shrink: 0;\n    transition: background-color var(--ts-duration-normal) var(--ts-easing-standard);\n  }\n\n  [data-scope=\"switch\"][data-part=\"control\"][data-state=\"checked\"] {\n    background: var(--ts-accent-default);\n  }\n\n  [data-scope=\"switch\"][data-part=\"thumb\"] {\n    position: absolute;\n    top: 50%;\n    left: 2px;\n    width: 0.875rem;\n    height: 0.875rem;\n    border-radius: var(--ts-radius-full);\n    background: var(--ts-color-white);\n    transform: translateY(-50%);\n    transition: left var(--ts-duration-normal) var(--ts-easing-standard);\n    box-shadow: var(--ts-shadow-sm);\n  }\n\n  [data-scope=\"switch\"][data-part=\"control\"][data-state=\"checked\"] [data-part=\"thumb\"] {\n    left: calc(100% - 0.875rem - 2px);\n  }\n\n  [data-scope=\"switch\"][data-part=\"label\"] {\n    font-size: var(--ts-font-size-sm);\n    color: var(--ts-fg-default);\n    user-select: none;\n  }\n}\n"
+    }
+  ]
+}

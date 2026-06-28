@@ -1,0 +1,17 @@
+@layer tessera.recipes {
+  [data-scope="tooltip"][data-part="positioner"] {
+    z-index: var(--ts-z-tooltip);
+  }
+
+  [data-scope="tooltip"][data-part="content"] {
+    background: var(--ts-bg-inverted);
+    color: var(--ts-fg-inverted);
+    border-radius: var(--ts-radius-md);
+    padding: var(--ts-space-1) var(--ts-space-2);
+    font-size: var(--ts-font-size-xs);
+    font-weight: var(--ts-font-weight-medium);
+    max-width: 18rem;
+    box-shadow: var(--ts-shadow-sm);
+    animation: tessera-fade-in var(--ts-duration-fast) var(--ts-easing-enter);
+  }
+}

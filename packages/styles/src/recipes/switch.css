@@ -1,0 +1,50 @@
+@layer tessera.recipes {
+  [data-scope="switch"][data-part="root"] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+    cursor: pointer;
+  }
+
+  [data-scope="switch"][data-part="root"][data-disabled] {
+    cursor: not-allowed;
+  }
+
+  [data-scope="switch"][data-part="control"] {
+    position: relative;
+    width: 2.25rem;
+    height: 1.25rem;
+    border-radius: var(--ts-radius-full);
+    background: var(--ts-bg-muted);
+    border: 1px solid transparent;
+    flex-shrink: 0;
+    transition: background-color var(--ts-duration-normal) var(--ts-easing-standard);
+  }
+
+  [data-scope="switch"][data-part="control"][data-state="checked"] {
+    background: var(--ts-accent-default);
+  }
+
+  [data-scope="switch"][data-part="thumb"] {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: var(--ts-radius-full);
+    background: var(--ts-color-white);
+    transform: translateY(-50%);
+    transition: left var(--ts-duration-normal) var(--ts-easing-standard);
+    box-shadow: var(--ts-shadow-sm);
+  }
+
+  [data-scope="switch"][data-part="control"][data-state="checked"] [data-part="thumb"] {
+    left: calc(100% - 0.875rem - 2px);
+  }
+
+  [data-scope="switch"][data-part="label"] {
+    font-size: var(--ts-font-size-sm);
+    color: var(--ts-fg-default);
+    user-select: none;
+  }
+}

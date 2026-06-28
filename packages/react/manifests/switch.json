@@ -1,0 +1,82 @@
+{
+  "name": "switch",
+  "displayName": "Switch",
+  "version": "0.1.0",
+  "import": "import { Switch } from \"@tessera/react\";",
+  "description": "On/off toggle backed by a native role=switch input.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "label",
+      "stable": true
+    },
+    {
+      "part": "control",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "thumb",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "required": true
+    },
+    {
+      "name": "checked",
+      "type": "boolean"
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "name": "name / value",
+      "type": "native form props"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "switch (native input)"
+    ],
+    "keyboard": [
+      {
+        "key": "Space",
+        "action": "toggles"
+      }
+    ],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"switch\"][data-part=\"control\"]"
+    ],
+    "stateAttributes": [
+      "data-state=checked|unchecked",
+      "data-disabled"
+    ]
+  },
+  "examples": [
+    "<Switch label=\"Email notifications\" defaultChecked onCheckedChange={save} />"
+  ],
+  "category": "forms"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "separator",
+  "displayName": "Separator",
+  "version": "0.1.0",
+  "description": "Horizontal or vertical rule with proper separator semantics.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "separator.tsx",
+      "hash": "6f315e5d81c5fbc7",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { separatorAnatomy } from \"@tessera/core\";\n\nexport interface SeparatorProps extends React.HTMLAttributes<HTMLDivElement> {\n  orientation?: \"horizontal\" | \"vertical\";\n  /** Purely visual separators should be hidden from assistive tech. Default true (semantic). */\n  decorative?: boolean;\n}\n\nexport const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(function Separator(\n  { orientation = \"horizontal\", decorative = false, ...rest },\n  ref\n) {\n  return (\n    <div\n      {...separatorAnatomy.attrs(\"root\")}\n      data-orientation={orientation}\n      role={decorative ? \"none\" : \"separator\"}\n      aria-orientation={decorative ? undefined : orientation}\n      ref={ref}\n      {...rest}\n    />\n  );\n});\n"
+    },
+    {
+      "path": "separator.css",
+      "hash": "ee7e9ac241b96164",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"separator\"][data-part=\"root\"] {\n    border: none;\n    background: var(--ts-border-muted);\n  }\n\n  [data-scope=\"separator\"][data-part=\"root\"][data-orientation=\"horizontal\"] {\n    width: 100%;\n    height: 1px;\n    margin: var(--ts-space-2) 0;\n  }\n\n  [data-scope=\"separator\"][data-part=\"root\"][data-orientation=\"vertical\"] {\n    width: 1px;\n    align-self: stretch;\n    margin: 0 var(--ts-space-2);\n  }\n}\n"
+    }
+  ]
+}

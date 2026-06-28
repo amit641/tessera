@@ -1,0 +1,25 @@
+{
+  "name": "@tessera/cli",
+  "version": "0.1.0",
+  "description": "Tessera CLI: add/eject component source into your repo with a lockfile, and pull upstream updates via 3-way merge.",
+  "type": "module",
+  "bin": {
+    "tessera": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "node-diff3": "^3.1.2",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}

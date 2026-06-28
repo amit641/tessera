@@ -1,0 +1,62 @@
+{
+  "name": "tag",
+  "displayName": "Tag",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Tag } from \"@tessera/react\";",
+  "description": "Chip for filters and selections, optionally dismissible.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "close",
+      "element": "button",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "tone",
+      "type": "\"neutral\" | \"accent\" | \"danger\"",
+      "default": "\"neutral\""
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "description": "Renders a labelled remove button when set."
+    }
+  ],
+  "a11y": {
+    "roles": [],
+    "keyboard": [
+      {
+        "key": "Enter / Space",
+        "action": "activates the remove button"
+      }
+    ],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"tag\"][data-part=\"root\"]"
+    ],
+    "componentTokens": [
+      "--tag-bg",
+      "--tag-fg"
+    ],
+    "stateAttributes": [
+      "data-tone"
+    ]
+  },
+  "examples": [
+    "<Tag tone=\"accent\" onDismiss={() => remove(id)}>react</Tag>"
+  ]
+}

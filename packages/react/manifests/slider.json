@@ -1,0 +1,79 @@
+{
+  "name": "slider",
+  "displayName": "Slider",
+  "version": "0.1.0",
+  "category": "forms",
+  "import": "import { Slider } from \"@tessera/react\";",
+  "description": "Single-value slider on a native range input: browser-grade keyboard, touch, and a11y.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "label",
+      "stable": true
+    },
+    {
+      "part": "valueText",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "control",
+      "element": "input[type=range]",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "value / defaultValue",
+      "type": "number"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: number) => void"
+    },
+    {
+      "name": "min / max / step",
+      "type": "number",
+      "default": "0 / 100 / 1"
+    },
+    {
+      "name": "formatValue",
+      "type": "(value: number) => string"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "slider (native)"
+    ],
+    "keyboard": [
+      {
+        "key": "Arrow keys",
+        "action": "step"
+      },
+      {
+        "key": "Home/End",
+        "action": "min/max"
+      }
+    ],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"slider\"][data-part=\"control\"]"
+    ],
+    "stateAttributes": []
+  },
+  "examples": [
+    "<Slider label=\"Volume\" defaultValue={40} formatValue={(v) => `${v}%`} />"
+  ]
+}

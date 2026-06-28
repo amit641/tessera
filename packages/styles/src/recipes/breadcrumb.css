@@ -1,0 +1,43 @@
+@layer tessera.recipes {
+  [data-scope="breadcrumb"][data-part="list"] {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ts-space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--ts-font-size-sm);
+  }
+
+  [data-scope="breadcrumb"][data-part="item"] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-1);
+  }
+
+  [data-scope="breadcrumb"][data-part="link"] {
+    color: var(--ts-fg-muted);
+    text-decoration: none;
+    border-radius: var(--ts-radius-sm);
+    padding: 2px var(--ts-space-1);
+  }
+
+  [data-scope="breadcrumb"][data-part="link"]:hover {
+    color: var(--ts-fg-default);
+    text-decoration: underline;
+  }
+
+  [data-scope="breadcrumb"][data-part="link"][aria-current="page"] {
+    color: var(--ts-fg-default);
+    font-weight: var(--ts-font-weight-medium);
+    text-decoration: none;
+    cursor: default;
+  }
+
+  [data-scope="breadcrumb"][data-part="separator"] {
+    display: inline-flex;
+    color: var(--ts-fg-subtle);
+    user-select: none;
+  }
+}

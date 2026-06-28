@@ -1,0 +1,76 @@
+{
+  "name": "progress",
+  "displayName": "Progress",
+  "version": "0.1.0",
+  "category": "feedback",
+  "import": "import { Progress } from \"@tessera/react\";",
+  "description": "Determinate or indeterminate progress bar with full progressbar semantics.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "valueText",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "track",
+      "element": "div[role=progressbar]",
+      "stable": true
+    },
+    {
+      "part": "fill",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "description": "Omit for indeterminate."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "default": "100"
+    },
+    {
+      "name": "showValueText",
+      "type": "boolean",
+      "default": "true"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "progressbar"
+    ],
+    "keyboard": [],
+    "notes": [
+      "aria-valuenow omitted while indeterminate."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"progress\"][data-part=\"track\"]"
+    ],
+    "stateAttributes": [
+      "data-indeterminate"
+    ]
+  },
+  "examples": [
+    "<Progress label=\"Uploading\" value={64} />"
+  ]
+}

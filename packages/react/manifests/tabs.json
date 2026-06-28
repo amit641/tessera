@@ -1,0 +1,83 @@
+{
+  "name": "tabs",
+  "displayName": "Tabs",
+  "version": "0.1.0",
+  "import": "import { Tabs } from \"@tessera/react\";",
+  "description": "WAI-ARIA tabs with roving focus and automatic activation.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "list",
+      "element": "div[role=tablist]",
+      "stable": true
+    },
+    {
+      "part": "trigger",
+      "element": "button[role=tab]",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div[role=tabpanel]",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.defaultValue",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "Root.value / onValueChange",
+      "type": "controlled mode"
+    },
+    {
+      "name": "Root.orientation",
+      "type": "\"horizontal\" | \"vertical\"",
+      "default": "\"horizontal\""
+    },
+    {
+      "name": "Trigger.value / Content.value",
+      "type": "string",
+      "required": true
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "tablist",
+      "tab",
+      "tabpanel"
+    ],
+    "keyboard": [
+      {
+        "key": "ArrowLeft/ArrowRight",
+        "action": "moves and activates (horizontal)"
+      },
+      {
+        "key": "Home/End",
+        "action": "first/last tab"
+      }
+    ],
+    "notes": [
+      "Inactive panels are unmounted, not just hidden."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"tabs\"][data-part=\"trigger\"]"
+    ],
+    "stateAttributes": [
+      "data-state=active|inactive",
+      "data-orientation"
+    ]
+  },
+  "examples": [
+    "<Tabs.Root defaultValue=\"account\">\n  <Tabs.List>\n    <Tabs.Trigger value=\"account\">Account</Tabs.Trigger>\n    <Tabs.Trigger value=\"security\">Security</Tabs.Trigger>\n  </Tabs.List>\n  <Tabs.Content value=\"account\">...</Tabs.Content>\n  <Tabs.Content value=\"security\">...</Tabs.Content>\n</Tabs.Root>"
+  ],
+  "category": "navigation"
+}

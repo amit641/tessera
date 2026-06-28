@@ -1,0 +1,22 @@
+{
+  "name": "card",
+  "displayName": "Card",
+  "version": "0.1.0",
+  "description": "Composable surface: Root, Header, Title, Description, Content, Footer parts.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "card.tsx",
+      "hash": "62e28162d85b853c",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { cardAnatomy } from \"@tessera/core\";\n\nexport interface CardRootProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Adds hover affordance for clickable/linkable cards. */\n  interactive?: boolean;\n}\n\nfunction CardRoot({ interactive, children, ...rest }: CardRootProps) {\n  return (\n    <div {...cardAnatomy.attrs(\"root\")} data-interactive={interactive || undefined} {...rest}>\n      {children}\n    </div>\n  );\n}\n\nfunction CardHeader(props: React.HTMLAttributes<HTMLDivElement>) {\n  return <div {...cardAnatomy.attrs(\"header\")} {...props} />;\n}\n\nfunction CardTitle(props: React.HTMLAttributes<HTMLHeadingElement>) {\n  return <h3 {...cardAnatomy.attrs(\"title\")} style={{ margin: 0 }} {...props} />;\n}\n\nfunction CardDescription(props: React.HTMLAttributes<HTMLParagraphElement>) {\n  return <p {...cardAnatomy.attrs(\"description\")} style={{ margin: 0 }} {...props} />;\n}\n\nfunction CardContent(props: React.HTMLAttributes<HTMLDivElement>) {\n  return <div {...cardAnatomy.attrs(\"content\")} {...props} />;\n}\n\nfunction CardFooter(props: React.HTMLAttributes<HTMLDivElement>) {\n  return <div {...cardAnatomy.attrs(\"footer\")} {...props} />;\n}\n\nexport const Card = {\n  Root: CardRoot,\n  Header: CardHeader,\n  Title: CardTitle,\n  Description: CardDescription,\n  Content: CardContent,\n  Footer: CardFooter,\n};\n"
+    },
+    {
+      "path": "card.css",
+      "hash": "73a64fa1bd009d16",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"card\"][data-part=\"root\"] {\n    display: flex;\n    flex-direction: column;\n    background: var(--ts-bg-surface);\n    border: 1px solid var(--ts-border-muted);\n    border-radius: var(--ts-radius-xl);\n    overflow: hidden;\n  }\n\n  [data-scope=\"card\"][data-part=\"root\"][data-interactive] {\n    transition:\n      border-color var(--ts-duration-fast) var(--ts-easing-standard),\n      transform var(--ts-duration-fast) var(--ts-easing-standard);\n  }\n\n  [data-scope=\"card\"][data-part=\"root\"][data-interactive]:hover {\n    border-color: var(--ts-border-strong);\n    transform: translateY(-1px);\n  }\n\n  [data-scope=\"card\"][data-part=\"header\"] {\n    display: flex;\n    flex-direction: column;\n    gap: var(--ts-space-1);\n    padding: var(--ts-space-5) var(--ts-space-5) 0;\n  }\n\n  [data-scope=\"card\"][data-part=\"title\"] {\n    font-size: var(--ts-font-size-md);\n    font-weight: var(--ts-font-weight-semibold);\n    color: var(--ts-fg-default);\n  }\n\n  [data-scope=\"card\"][data-part=\"description\"] {\n    font-size: var(--ts-font-size-sm);\n    color: var(--ts-fg-muted);\n  }\n\n  [data-scope=\"card\"][data-part=\"content\"] {\n    padding: var(--ts-space-4) var(--ts-space-5);\n    font-size: var(--ts-font-size-sm);\n    color: var(--ts-fg-default);\n    flex: 1;\n  }\n\n  [data-scope=\"card\"][data-part=\"footer\"] {\n    display: flex;\n    align-items: center;\n    gap: var(--ts-space-2);\n    padding: var(--ts-space-4) var(--ts-space-5);\n    border-top: 1px solid var(--ts-border-muted);\n    background: var(--ts-bg-canvas);\n  }\n}\n"
+    }
+  ]
+}

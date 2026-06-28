@@ -1,0 +1,81 @@
+{
+  "name": "table",
+  "displayName": "Table",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Table } from \"@tessera/react\";",
+  "description": "Composable data table: Root (scroll container), Header, Body, Row, Head, Cell, Caption.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "table",
+      "element": "table",
+      "stable": true
+    },
+    {
+      "part": "caption",
+      "element": "caption",
+      "stable": true
+    },
+    {
+      "part": "header",
+      "element": "thead",
+      "stable": true
+    },
+    {
+      "part": "body",
+      "element": "tbody",
+      "stable": true
+    },
+    {
+      "part": "row",
+      "element": "tr",
+      "stable": true
+    },
+    {
+      "part": "head",
+      "element": "th",
+      "stable": true
+    },
+    {
+      "part": "cell",
+      "element": "td",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.striped",
+      "type": "boolean"
+    },
+    {
+      "name": "Root.hoverable",
+      "type": "boolean"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "table (native semantics)"
+    ],
+    "keyboard": [],
+    "notes": [
+      "Root is a scroll container so wide tables overflow gracefully."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"table\"][data-part=\"cell\"]"
+    ],
+    "stateAttributes": [
+      "data-striped",
+      "data-hoverable"
+    ]
+  },
+  "examples": [
+    "<Table.Root striped hoverable>\n  <Table.Header>\n    <Table.Row><Table.Head>Name</Table.Head><Table.Head>Status</Table.Head></Table.Row>\n  </Table.Header>\n  <Table.Body>\n    <Table.Row><Table.Cell>api-server</Table.Cell><Table.Cell><Badge tone=\"success\">Healthy</Badge></Table.Cell></Table.Row>\n  </Table.Body>\n</Table.Root>"
+  ]
+}

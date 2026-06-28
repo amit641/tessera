@@ -1,0 +1,22 @@
+{
+  "name": "textarea",
+  "displayName": "Textarea",
+  "version": "0.1.0",
+  "description": "Multi-line text input with label, description, and error wiring (mirrors TextField).",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "textarea.tsx",
+      "hash": "b2c6ea9d7d8e6637",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { textareaAnatomy } from \"@tessera/core\";\n\nexport interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {\n  label: string;\n  description?: string;\n  error?: string;\n}\n\nexport const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(\n  { label, description, error, id: idProp, className, style, ...rest },\n  ref\n) {\n  const autoId = React.useId();\n  const id = idProp ?? `${autoId}-textarea`;\n  const descriptionId = `${autoId}-description`;\n  const errorId = `${autoId}-error`;\n  const invalid = error !== undefined;\n\n  const describedBy =\n    [description && descriptionId, invalid && errorId].filter(Boolean).join(\" \") || undefined;\n\n  return (\n    <div {...textareaAnatomy.attrs(\"root\")} className={className} style={style}>\n      <label {...textareaAnatomy.attrs(\"label\")} htmlFor={id}>\n        {label}\n      </label>\n      <textarea\n        {...textareaAnatomy.attrs(\"input\")}\n        id={id}\n        ref={ref}\n        data-invalid={invalid || undefined}\n        aria-invalid={invalid || undefined}\n        aria-describedby={describedBy}\n        {...rest}\n      />\n      {description && (\n        <p {...textareaAnatomy.attrs(\"description\")} id={descriptionId}>\n          {description}\n        </p>\n      )}\n      {invalid && (\n        <p {...textareaAnatomy.attrs(\"error\")} id={errorId} role=\"alert\">\n          {error}\n        </p>\n      )}\n    </div>\n  );\n});\n"
+    },
+    {
+      "path": "textarea.css",
+      "hash": "45f74fa3ee424d06",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"textarea\"][data-part=\"root\"] {\n    display: flex;\n    flex-direction: column;\n    gap: var(--ts-space-1);\n    max-width: 100%;\n  }\n\n  [data-scope=\"textarea\"][data-part=\"label\"] {\n    font-size: var(--ts-font-size-sm);\n    font-weight: var(--ts-font-weight-medium);\n    color: var(--ts-fg-default);\n  }\n\n  [data-scope=\"textarea\"][data-part=\"input\"] {\n    appearance: none;\n    width: 100%;\n    min-height: 5rem;\n    padding: var(--ts-space-2) var(--ts-space-3);\n    border: 1px solid var(--ts-border-default);\n    border-radius: var(--ts-radius-md);\n    background: var(--ts-bg-surface);\n    color: var(--ts-fg-default);\n    font-size: var(--ts-font-size-sm);\n    font-family: var(--ts-font-family-sans);\n    line-height: var(--ts-font-leading-normal);\n    resize: vertical;\n    transition: border-color var(--ts-duration-fast) var(--ts-easing-standard);\n  }\n\n  [data-scope=\"textarea\"][data-part=\"input\"]::placeholder {\n    color: var(--ts-fg-subtle);\n  }\n\n  [data-scope=\"textarea\"][data-part=\"input\"]:hover:not(:disabled) {\n    border-color: var(--ts-border-strong);\n  }\n\n  [data-scope=\"textarea\"][data-part=\"input\"]:focus-visible {\n    outline: 2px solid var(--ts-ring-color);\n    outline-offset: -1px;\n    border-color: transparent;\n  }\n\n  [data-scope=\"textarea\"][data-part=\"input\"][data-invalid] {\n    border-color: var(--ts-danger-default);\n  }\n\n  [data-scope=\"textarea\"][data-part=\"description\"] {\n    font-size: var(--ts-font-size-xs);\n    color: var(--ts-fg-muted);\n  }\n\n  [data-scope=\"textarea\"][data-part=\"error\"] {\n    font-size: var(--ts-font-size-xs);\n    color: var(--ts-danger-fg);\n  }\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+@layer tessera.recipes {
+  [data-scope="toast"][data-part="viewport"] {
+    position: fixed;
+    bottom: var(--ts-space-4);
+    right: var(--ts-space-4);
+    z-index: var(--ts-z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ts-space-2);
+    width: 22rem;
+    max-width: calc(100vw - var(--ts-space-8));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  [data-scope="toast"][data-part="root"] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ts-space-1);
+    background: var(--ts-bg-raised);
+    color: var(--ts-fg-default);
+    border: 1px solid var(--ts-border-muted);
+    border-left: 3px solid var(--ts-accent-default);
+    border-radius: var(--ts-radius-lg);
+    box-shadow: var(--ts-shadow-md);
+    padding: var(--ts-space-3) var(--ts-space-8) var(--ts-space-3) var(--ts-space-3);
+    animation: tessera-toast-in var(--ts-duration-normal) var(--ts-easing-enter);
+  }
+
+  [data-scope="toast"][data-part="root"][data-type="success"] {
+    border-left-color: var(--ts-success-default);
+  }
+
+  [data-scope="toast"][data-part="root"][data-type="warning"] {
+    border-left-color: var(--ts-warning-default);
+  }
+
+  [data-scope="toast"][data-part="root"][data-type="danger"] {
+    border-left-color: var(--ts-danger-default);
+  }
+
+  [data-scope="toast"][data-part="title"] {
+    font-size: var(--ts-font-size-sm);
+    font-weight: var(--ts-font-weight-semibold);
+  }
+
+  [data-scope="toast"][data-part="description"] {
+    font-size: var(--ts-font-size-xs);
+    color: var(--ts-fg-muted);
+    line-height: var(--ts-font-leading-normal);
+  }
+
+  [data-scope="toast"][data-part="close"] {
+    position: absolute;
+    top: var(--ts-space-2);
+    right: var(--ts-space-2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: var(--ts-radius-sm);
+    background: transparent;
+    color: var(--ts-fg-muted);
+    cursor: pointer;
+  }
+
+  [data-scope="toast"][data-part="close"]:hover {
+    background: var(--ts-bg-subtle);
+    color: var(--ts-fg-default);
+  }
+
+  @keyframes tessera-toast-in {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "name": "text-field",
+  "displayName": "TextField",
+  "version": "0.1.0",
+  "import": "import { TextField } from \"@tessera/react\";",
+  "description": "Labeled text input with description and error messaging, all wired with aria-describedby automatically.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "label",
+      "stable": true
+    },
+    {
+      "part": "input",
+      "element": "input",
+      "stable": true
+    },
+    {
+      "part": "description",
+      "element": "p",
+      "stable": true
+    },
+    {
+      "part": "error",
+      "element": "p",
+      "stable": true,
+      "note": "role=alert when present"
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Helper text linked via aria-describedby."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "Marks the field invalid and announces via role=alert."
+    },
+    {
+      "name": "...rest",
+      "type": "React.InputHTMLAttributes<HTMLInputElement>"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "textbox (native input)"
+    ],
+    "keyboard": [],
+    "notes": [
+      "label is always required - there is no unlabeled variant.",
+      "error sets aria-invalid and data-invalid."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"text-field\"][data-part=\"input\"]"
+    ],
+    "stateAttributes": [
+      "data-invalid"
+    ]
+  },
+  "examples": [
+    "<TextField label=\"Email\" type=\"email\" placeholder=\"you@example.com\" />",
+    "<TextField label=\"Username\" error={errors.username} />"
+  ],
+  "category": "forms"
+}

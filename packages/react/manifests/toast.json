@@ -1,0 +1,75 @@
+{
+  "name": "toast",
+  "displayName": "Toast",
+  "version": "0.1.0",
+  "import": "import { ToastProvider, useToast } from \"@tessera/react\";",
+  "description": "Imperative notifications backed by a framework-agnostic queue with auto-dismiss, hover pause/resume, and a visible-toast cap.",
+  "anatomy": [
+    {
+      "part": "viewport",
+      "element": "ol",
+      "stable": true
+    },
+    {
+      "part": "root",
+      "element": "li[role=status]",
+      "stable": true
+    },
+    {
+      "part": "title",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "description",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "close",
+      "element": "button",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "ToastProvider.duration",
+      "type": "number",
+      "default": "5000"
+    },
+    {
+      "name": "ToastProvider.max",
+      "type": "number",
+      "default": "5"
+    },
+    {
+      "name": "toast(options)",
+      "type": "{ title; description?; type?: \"info\"|\"success\"|\"warning\"|\"danger\"; duration? }"
+    },
+    {
+      "name": "toast.dismiss(id) / toast.clear()",
+      "type": "imperative controls"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "status with aria-live=polite"
+    ],
+    "keyboard": [],
+    "notes": [
+      "Hovering the viewport pauses all auto-dismiss timers."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"toast\"][data-part=\"root\"]"
+    ],
+    "stateAttributes": [
+      "data-type=info|success|warning|danger"
+    ]
+  },
+  "examples": [
+    "const toast = useToast();\ntoast({ title: \"Saved\", type: \"success\" });"
+  ],
+  "category": "overlay"
+}

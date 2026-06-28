@@ -1,0 +1,87 @@
+{
+  "name": "checkbox",
+  "displayName": "Checkbox",
+  "version": "0.1.0",
+  "import": "import { Checkbox } from \"@tessera/react\";",
+  "description": "Checkbox built on a visually-hidden native input: native form submission and accessibility for free.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "label",
+      "stable": true
+    },
+    {
+      "part": "control",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "indicator",
+      "element": "span",
+      "stable": true,
+      "note": "only while checked"
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "required": true
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "description": "Controlled value."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "name": "name / value / required",
+      "type": "native form props"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "checkbox (native input)"
+    ],
+    "keyboard": [
+      {
+        "key": "Space",
+        "action": "toggles"
+      }
+    ],
+    "notes": [
+      "Focus ring renders on the visual control while the hidden input holds focus."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"checkbox\"][data-part=\"control\"]"
+    ],
+    "stateAttributes": [
+      "data-state=checked|unchecked",
+      "data-disabled"
+    ]
+  },
+  "examples": [
+    "<Checkbox label=\"Accept terms\" onCheckedChange={setAccepted} />",
+    "<Checkbox label=\"Subscribed\" checked={subscribed} onCheckedChange={setSubscribed} />"
+  ],
+  "category": "forms"
+}

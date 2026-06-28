@@ -1,0 +1,170 @@
+[
+  {
+    "name": "accordion",
+    "displayName": "Accordion",
+    "version": "0.1.0",
+    "description": "Disclosure list with single or multiple open items."
+  },
+  {
+    "name": "alert",
+    "displayName": "Alert",
+    "version": "0.1.0",
+    "description": "Inline callout for contextual feedback; danger/warning announce assertively via role=alert."
+  },
+  {
+    "name": "avatar",
+    "displayName": "Avatar",
+    "version": "0.1.0",
+    "description": "Image avatar with automatic initials fallback when the image is missing or fails to load."
+  },
+  {
+    "name": "badge",
+    "displayName": "Badge",
+    "version": "0.1.0",
+    "description": "Compact status label with tone and variant axes."
+  },
+  {
+    "name": "breadcrumb",
+    "displayName": "Breadcrumb",
+    "version": "0.1.0",
+    "description": "Navigation trail; the last item is marked aria-current=page automatically."
+  },
+  {
+    "name": "button",
+    "displayName": "Button",
+    "version": "0.1.0",
+    "description": "Action button with variants, sizes, and a loading state that preserves width and sets aria-busy."
+  },
+  {
+    "name": "card",
+    "displayName": "Card",
+    "version": "0.1.0",
+    "description": "Composable surface: Root, Header, Title, Description, Content, Footer parts."
+  },
+  {
+    "name": "checkbox",
+    "displayName": "Checkbox",
+    "version": "0.1.0",
+    "description": "Checkbox built on a visually-hidden native input: native form submission and accessibility for free."
+  },
+  {
+    "name": "dialog",
+    "displayName": "Dialog",
+    "version": "0.1.0",
+    "description": "Modal dialog driven by a core state machine; focus trap, scroll lock, Escape and backdrop dismissal handled automatically."
+  },
+  {
+    "name": "kbd",
+    "displayName": "Kbd",
+    "version": "0.1.0",
+    "description": "Keyboard key cap for shortcuts in docs and menus."
+  },
+  {
+    "name": "menu",
+    "displayName": "Menu",
+    "version": "0.1.0",
+    "description": "Dropdown action menu (WAI-ARIA menu pattern): roving focus, Home/End, Escape, outside-click dismissal."
+  },
+  {
+    "name": "pagination",
+    "displayName": "Pagination",
+    "version": "0.1.0",
+    "description": "Page navigation with sibling windows and ellipsis collapsing (logic lives in @tessera/core)."
+  },
+  {
+    "name": "popover",
+    "displayName": "Popover",
+    "version": "0.1.0",
+    "description": "Non-modal floating panel anchored to its trigger (floating-ui positioning with flip/shift)."
+  },
+  {
+    "name": "progress",
+    "displayName": "Progress",
+    "version": "0.1.0",
+    "description": "Determinate or indeterminate progress bar with full progressbar semantics."
+  },
+  {
+    "name": "radio-group",
+    "displayName": "RadioGroup",
+    "version": "0.1.0",
+    "description": "Compound radio group built on native radio inputs (arrow-key navigation comes from the browser)."
+  },
+  {
+    "name": "select",
+    "displayName": "Select",
+    "version": "0.1.0",
+    "description": "Single-select listbox (combobox pattern): typeahead, disabled-item skipping, keyboard navigation, anchored positioning."
+  },
+  {
+    "name": "separator",
+    "displayName": "Separator",
+    "version": "0.1.0",
+    "description": "Horizontal or vertical rule with proper separator semantics."
+  },
+  {
+    "name": "skeleton",
+    "displayName": "Skeleton",
+    "version": "0.1.0",
+    "description": "Loading placeholder with text/circle/rect variants and reduced-motion support."
+  },
+  {
+    "name": "slider",
+    "displayName": "Slider",
+    "version": "0.1.0",
+    "description": "Single-value slider on a native range input: browser-grade keyboard, touch, and a11y."
+  },
+  {
+    "name": "spinner",
+    "displayName": "Spinner",
+    "version": "0.1.0",
+    "description": "Indeterminate loading indicator with an accessible label."
+  },
+  {
+    "name": "switch",
+    "displayName": "Switch",
+    "version": "0.1.0",
+    "description": "On/off toggle backed by a native role=switch input."
+  },
+  {
+    "name": "table",
+    "displayName": "Table",
+    "version": "0.1.0",
+    "description": "Composable data table: Root (scroll container), Header, Body, Row, Head, Cell, Caption."
+  },
+  {
+    "name": "tabs",
+    "displayName": "Tabs",
+    "version": "0.1.0",
+    "description": "WAI-ARIA tabs with roving focus and automatic activation."
+  },
+  {
+    "name": "tag",
+    "displayName": "Tag",
+    "version": "0.1.0",
+    "description": "Chip for filters and selections, optionally dismissible."
+  },
+  {
+    "name": "text-field",
+    "displayName": "TextField",
+    "version": "0.1.0",
+    "description": "Labeled text input with description and error messaging, all wired with aria-describedby automatically."
+  },
+  {
+    "name": "textarea",
+    "displayName": "Textarea",
+    "version": "0.1.0",
+    "description": "Multi-line text input with label, description, and error wiring (mirrors TextField)."
+  },
+  {
+    "name": "toast",
+    "displayName": "Toast",
+    "version": "0.1.0",
+    "description": "Imperative notifications backed by a framework-agnostic queue with auto-dismiss, hover pause/resume, and a visible-toast cap."
+  },
+  {
+    "name": "tooltip",
+    "displayName": "Tooltip",
+    "version": "0.1.0",
+    "description": "Hover/focus tooltip with hover-intent delays driven by a four-state core machine (no flicker on quick re-entry)."
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "name": "alert",
+  "displayName": "Alert",
+  "version": "0.1.0",
+  "category": "feedback",
+  "import": "import { Alert } from \"@tessera/react\";",
+  "description": "Inline callout for contextual feedback; danger/warning announce assertively via role=alert.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "icon",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "title",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "description",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "type",
+      "type": "\"info\" | \"success\" | \"warning\" | \"danger\"",
+      "default": "\"info\""
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Replaces the default per-type glyph."
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "status (info/success)",
+      "alert (warning/danger)"
+    ],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"alert\"][data-part=\"root\"]"
+    ],
+    "componentTokens": [
+      "--alert-accent",
+      "--alert-bg",
+      "--alert-fg"
+    ],
+    "stateAttributes": [
+      "data-type"
+    ]
+  },
+  "examples": [
+    "<Alert type=\"success\" title=\"Deploy complete\" description=\"All checks passed.\" />"
+  ]
+}

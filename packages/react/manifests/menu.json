@@ -1,0 +1,98 @@
+{
+  "name": "menu",
+  "displayName": "Menu",
+  "version": "0.1.0",
+  "category": "overlay",
+  "import": "import { Menu } from \"@tessera/react\";",
+  "description": "Dropdown action menu (WAI-ARIA menu pattern): roving focus, Home/End, Escape, outside-click dismissal.",
+  "anatomy": [
+    {
+      "part": "trigger",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "positioner",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div[role=menu]",
+      "stable": true
+    },
+    {
+      "part": "item",
+      "element": "button[role=menuitem]",
+      "stable": true
+    },
+    {
+      "part": "separator",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "groupLabel",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.placement",
+      "type": "Placement (floating-ui)",
+      "default": "\"bottom-start\""
+    },
+    {
+      "name": "Root.onOpenChange",
+      "type": "(open: boolean) => void"
+    },
+    {
+      "name": "Item.onSelect",
+      "type": "() => void",
+      "description": "Menu closes automatically after selection."
+    },
+    {
+      "name": "Item.danger",
+      "type": "boolean"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "menu",
+      "menuitem"
+    ],
+    "keyboard": [
+      {
+        "key": "ArrowDown/ArrowUp",
+        "action": "move focus (wraps)"
+      },
+      {
+        "key": "Home/End",
+        "action": "first/last item"
+      },
+      {
+        "key": "Enter",
+        "action": "selects item"
+      },
+      {
+        "key": "Escape",
+        "action": "closes and refocuses trigger"
+      }
+    ],
+    "notes": [
+      "First enabled item is focused when the menu opens."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"menu\"][data-part=\"item\"]"
+    ],
+    "stateAttributes": [
+      "data-danger"
+    ]
+  },
+  "examples": [
+    "<Menu.Root>\n  <Menu.Trigger>Actions</Menu.Trigger>\n  <Menu.Content>\n    <Menu.Item onSelect={rename}>Rename</Menu.Item>\n    <Menu.Separator />\n    <Menu.Item danger onSelect={remove}>Delete</Menu.Item>\n  </Menu.Content>\n</Menu.Root>"
+  ]
+}

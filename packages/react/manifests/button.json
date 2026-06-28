@@ -1,0 +1,83 @@
+{
+  "name": "button",
+  "displayName": "Button",
+  "version": "0.1.0",
+  "import": "import { Button } from \"@tessera/react\";",
+  "description": "Action button with variants, sizes, and a loading state that preserves width and sets aria-busy.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "spinner",
+      "element": "span",
+      "stable": true,
+      "note": "only while loading"
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"solid\" | \"outline\" | \"ghost\" | \"danger\"",
+      "default": "\"solid\""
+    },
+    {
+      "name": "size",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "default": "\"md\""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "default": "false",
+      "description": "Shows spinner, disables interaction, sets aria-busy."
+    },
+    {
+      "name": "...rest",
+      "type": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "button (native)"
+    ],
+    "keyboard": [
+      {
+        "key": "Enter / Space",
+        "action": "activates"
+      }
+    ],
+    "notes": [
+      "Defaults to type=\"button\" so it never accidentally submits forms."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"button\"][data-part=\"root\"]"
+    ],
+    "componentTokens": [
+      "--button-bg",
+      "--button-fg",
+      "--button-border",
+      "--button-bg-hover"
+    ],
+    "stateAttributes": [
+      "data-variant",
+      "data-size",
+      "data-loading"
+    ]
+  },
+  "examples": [
+    "<Button onClick={save}>Save</Button>",
+    "<Button variant=\"outline\" size=\"sm\">Cancel</Button>",
+    "<Button variant=\"danger\" loading={deleting}>Delete</Button>"
+  ],
+  "category": "forms"
+}

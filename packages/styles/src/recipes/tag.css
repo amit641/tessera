@@ -1,0 +1,51 @@
+@layer tessera.recipes {
+  [data-scope="tag"][data-part="root"] {
+    --tag-bg: var(--ts-bg-subtle);
+    --tag-fg: var(--ts-fg-default);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ts-space-1);
+    border: 1px solid var(--ts-border-muted);
+    border-radius: var(--ts-radius-md);
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    font-size: var(--ts-font-size-xs);
+    font-weight: var(--ts-font-weight-medium);
+    line-height: 1;
+    padding: 4px var(--ts-space-2);
+  }
+
+  [data-scope="tag"][data-part="root"][data-tone="accent"] {
+    --tag-bg: var(--ts-accent-subtle);
+    --tag-fg: var(--ts-accent-fg);
+    border-color: transparent;
+  }
+
+  [data-scope="tag"][data-part="root"][data-tone="danger"] {
+    --tag-bg: var(--ts-danger-subtle);
+    --tag-fg: var(--ts-danger-fg);
+    border-color: transparent;
+  }
+
+  [data-scope="tag"][data-part="close"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    margin-right: -2px;
+    border: none;
+    border-radius: var(--ts-radius-sm);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 0.65rem;
+  }
+
+  [data-scope="tag"][data-part="close"]:hover {
+    opacity: 1;
+    background: color-mix(in srgb, currentColor 15%, transparent);
+  }
+}

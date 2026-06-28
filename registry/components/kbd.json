@@ -1,0 +1,22 @@
+{
+  "name": "kbd",
+  "displayName": "Kbd",
+  "version": "0.1.0",
+  "description": "Keyboard key cap for shortcuts in docs and menus.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "kbd.tsx",
+      "hash": "6df57969e8d915f5",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { kbdAnatomy } from \"@tessera/core\";\n\nexport const Kbd = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(\n  function Kbd(props, ref) {\n    return <kbd {...kbdAnatomy.attrs(\"root\")} ref={ref} {...props} />;\n  }\n);\n"
+    },
+    {
+      "path": "kbd.css",
+      "hash": "c846f9fd9a0845a2",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"kbd\"][data-part=\"root\"] {\n    display: inline-block;\n    border: 1px solid var(--ts-border-default);\n    border-bottom-width: 2px;\n    border-radius: var(--ts-radius-sm);\n    background: var(--ts-bg-subtle);\n    color: var(--ts-fg-default);\n    font-family: var(--ts-font-family-mono);\n    font-size: var(--ts-font-size-xs);\n    line-height: 1;\n    padding: 3px 5px;\n  }\n}\n"
+    }
+  ]
+}

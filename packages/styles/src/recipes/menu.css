@@ -1,0 +1,66 @@
+@layer tessera.recipes {
+  [data-scope="menu"][data-part="positioner"] {
+    z-index: var(--ts-z-dropdown);
+  }
+
+  [data-scope="menu"][data-part="content"] {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 11rem;
+    background: var(--ts-bg-raised);
+    border: 1px solid var(--ts-border-muted);
+    border-radius: var(--ts-radius-lg);
+    box-shadow: var(--ts-shadow-md);
+    padding: var(--ts-space-1);
+    animation: tessera-pop-in var(--ts-duration-fast) var(--ts-easing-enter);
+  }
+
+  [data-scope="menu"][data-part="item"] {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    gap: var(--ts-space-2);
+    width: 100%;
+    border: none;
+    border-radius: var(--ts-radius-sm);
+    background: transparent;
+    color: var(--ts-fg-default);
+    font-size: var(--ts-font-size-sm);
+    text-align: left;
+    padding: var(--ts-space-2);
+    cursor: pointer;
+  }
+
+  [data-scope="menu"][data-part="item"]:hover:not(:disabled),
+  [data-scope="menu"][data-part="item"]:focus-visible {
+    background: var(--ts-accent-subtle);
+    color: var(--ts-accent-fg);
+    outline: none;
+  }
+
+  [data-scope="menu"][data-part="item"][data-danger] {
+    color: var(--ts-danger-fg);
+  }
+
+  [data-scope="menu"][data-part="item"][data-danger]:hover:not(:disabled),
+  [data-scope="menu"][data-part="item"][data-danger]:focus-visible {
+    background: var(--ts-danger-subtle);
+    color: var(--ts-danger-fg);
+  }
+
+  [data-scope="menu"][data-part="separator"] {
+    height: 1px;
+    margin: var(--ts-space-1) calc(-1 * var(--ts-space-1));
+    background: var(--ts-border-muted);
+  }
+
+  [data-scope="menu"][data-part="groupLabel"] {
+    font-size: var(--ts-font-size-xs);
+    font-weight: var(--ts-font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ts-fg-subtle);
+    padding: var(--ts-space-2) var(--ts-space-2) var(--ts-space-1);
+  }
+}

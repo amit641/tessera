@@ -1,0 +1,22 @@
+{
+  "name": "checkbox",
+  "displayName": "Checkbox",
+  "version": "0.1.0",
+  "description": "Checkbox built on a visually-hidden native input: native form submission and accessibility for free.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "checkbox.tsx",
+      "hash": "0bc570d552bd6031",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { checkboxAnatomy } from \"@tessera/core\";\nimport { useControllableState } from \"../utils/hooks\";\nimport { CheckIcon } from \"../utils/icons\";\n\nexport interface CheckboxProps {\n  label: React.ReactNode;\n  checked?: boolean;\n  defaultChecked?: boolean;\n  onCheckedChange?: (checked: boolean) => void;\n  disabled?: boolean;\n  name?: string;\n  value?: string;\n  required?: boolean;\n}\n\n/** Built on a real (visually hidden) input: native forms and a11y for free. */\nexport const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(\n  { label, checked, defaultChecked = false, onCheckedChange, disabled, name, value, required },\n  ref\n) {\n  const [isChecked, setChecked] = useControllableState({\n    value: checked,\n    defaultValue: defaultChecked,\n    onChange: onCheckedChange,\n  });\n  const state = isChecked ? \"checked\" : \"unchecked\";\n\n  return (\n    <label {...checkboxAnatomy.attrs(\"root\")} data-disabled={disabled || undefined}>\n      <input\n        type=\"checkbox\"\n        data-visually-hidden=\"\"\n        ref={ref}\n        checked={isChecked}\n        onChange={(event) => setChecked(event.target.checked)}\n        disabled={disabled}\n        name={name}\n        value={value}\n        required={required}\n      />\n      <span {...checkboxAnatomy.attrs(\"control\")} data-state={state} aria-hidden>\n        {isChecked && (\n          <span {...checkboxAnatomy.attrs(\"indicator\")}>\n            <CheckIcon />\n          </span>\n        )}\n      </span>\n      <span {...checkboxAnatomy.attrs(\"label\")}>{label}</span>\n    </label>\n  );\n});\n"
+    },
+    {
+      "path": "checkbox.css",
+      "hash": "23e7e45be358d7b3",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"checkbox\"][data-part=\"root\"] {\n    display: inline-flex;\n    align-items: center;\n    gap: var(--ts-space-2);\n    cursor: pointer;\n  }\n\n  [data-scope=\"checkbox\"][data-part=\"root\"][data-disabled] {\n    cursor: not-allowed;\n  }\n\n  [data-scope=\"checkbox\"][data-part=\"control\"] {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 1.125rem;\n    height: 1.125rem;\n    border: 1px solid var(--ts-border-strong);\n    border-radius: var(--ts-radius-sm);\n    background: var(--ts-bg-surface);\n    color: var(--ts-fg-onAccent);\n    flex-shrink: 0;\n    transition:\n      background-color var(--ts-duration-fast) var(--ts-easing-standard),\n      border-color var(--ts-duration-fast) var(--ts-easing-standard);\n  }\n\n  [data-scope=\"checkbox\"][data-part=\"control\"][data-state=\"checked\"] {\n    background: var(--ts-accent-default);\n    border-color: var(--ts-accent-default);\n  }\n\n  [data-scope=\"checkbox\"][data-part=\"indicator\"] {\n    display: inline-flex;\n    width: 0.75rem;\n    height: 0.75rem;\n  }\n\n  [data-scope=\"checkbox\"][data-part=\"label\"] {\n    font-size: var(--ts-font-size-sm);\n    color: var(--ts-fg-default);\n    user-select: none;\n  }\n}\n"
+    }
+  ]
+}

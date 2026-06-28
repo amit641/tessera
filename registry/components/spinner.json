@@ -1,0 +1,22 @@
+{
+  "name": "spinner",
+  "displayName": "Spinner",
+  "version": "0.1.0",
+  "description": "Indeterminate loading indicator with an accessible label.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "spinner.tsx",
+      "hash": "2477d03e50007ce8",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { spinnerAnatomy } from \"@tessera/core\";\n\nexport interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {\n  size?: \"sm\" | \"md\" | \"lg\";\n  /** Accessible label announced to screen readers. Default \"Loading\". */\n  label?: string;\n}\n\nexport const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(function Spinner(\n  { size = \"md\", label = \"Loading\", ...rest },\n  ref\n) {\n  return (\n    <span\n      {...spinnerAnatomy.attrs(\"root\")}\n      data-size={size}\n      role=\"status\"\n      aria-label={label}\n      ref={ref}\n      {...rest}\n    />\n  );\n});\n"
+    },
+    {
+      "path": "spinner.css",
+      "hash": "86cec965045903b9",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"spinner\"][data-part=\"root\"] {\n    --spinner-size: 1.25rem;\n\n    display: inline-block;\n    width: var(--spinner-size);\n    height: var(--spinner-size);\n    border-radius: var(--ts-radius-full);\n    border: 2px solid var(--ts-border-muted);\n    border-top-color: var(--ts-accent-default);\n    animation: tessera-spin 0.7s linear infinite;\n    flex-shrink: 0;\n  }\n\n  [data-scope=\"spinner\"][data-part=\"root\"][data-size=\"sm\"] {\n    --spinner-size: 0.875rem;\n  }\n\n  [data-scope=\"spinner\"][data-part=\"root\"][data-size=\"lg\"] {\n    --spinner-size: 2rem;\n    border-width: 3px;\n  }\n}\n"
+    }
+  ]
+}

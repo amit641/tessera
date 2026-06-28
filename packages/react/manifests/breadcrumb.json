@@ -1,0 +1,65 @@
+{
+  "name": "breadcrumb",
+  "displayName": "Breadcrumb",
+  "version": "0.1.0",
+  "category": "navigation",
+  "import": "import { Breadcrumb } from \"@tessera/react\";",
+  "description": "Navigation trail; the last item is marked aria-current=page automatically.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "nav",
+      "stable": true
+    },
+    {
+      "part": "list",
+      "element": "ol",
+      "stable": true
+    },
+    {
+      "part": "item",
+      "element": "li",
+      "stable": true
+    },
+    {
+      "part": "link",
+      "element": "a",
+      "stable": true
+    },
+    {
+      "part": "separator",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "items",
+      "type": "{ label: string; href?: string }[]",
+      "required": true
+    },
+    {
+      "name": "separator",
+      "type": "ReactNode",
+      "default": "\"/\""
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "navigation"
+    ],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"breadcrumb\"][data-part=\"link\"]"
+    ],
+    "stateAttributes": [
+      "aria-current=\"page\""
+    ]
+  },
+  "examples": [
+    "<Breadcrumb items={[{ label: \"Home\", href: \"/\" }, { label: \"Settings\", href: \"/settings\" }, { label: \"Billing\" }]} />"
+  ]
+}

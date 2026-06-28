@@ -1,0 +1,636 @@
+# Tessera Design System
+
+> Tessera is a token-first, zero-runtime-CSS design system with a framework-agnostic
+> core. Styling targets stable [data-scope][data-part] anatomy attributes (a versioned
+> public API). All CSS lives in `@layer tessera`, so plain application CSS always wins.
+
+Setup:
+```tsx
+import "@tessera/tokens/tokens.css";
+import "@tessera/styles/index.css";
+// Theming: <html data-theme="dark"> or "light". Dark is the default.
+```
+
+Components (28):
+
+## Accordion (v0.1.0)
+
+Disclosure list with single or multiple open items.
+
+Import: `import { Accordion } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, item, header, trigger, indicator, content
+
+Props:
+- `Root.multiple`: boolean = false
+- `Root.value / defaultValue`: string[]
+- `Root.onValueChange`: (value: string[]) => void
+- `Item.value`: string (required)
+- `Item.disabled`: boolean
+
+Keyboard:
+- Enter / Space: toggles item
+
+Example:
+```tsx
+<Accordion.Root multiple defaultValue={["a"]}>
+  <Accordion.Item value="a">
+    <Accordion.Trigger>Section A</Accordion.Trigger>
+    <Accordion.Content>Content A</Accordion.Content>
+  </Accordion.Item>
+</Accordion.Root>
+```
+
+## Alert (v0.1.0)
+
+Inline callout for contextual feedback; danger/warning announce assertively via role=alert.
+
+Import: `import { Alert } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, icon, title, description
+
+Props:
+- `type`: "info" | "success" | "warning" | "danger" = "info"
+- `title`: string (required)
+- `description`: string
+- `icon`: ReactNode — Replaces the default per-type glyph.
+
+Example:
+```tsx
+<Alert type="success" title="Deploy complete" description="All checks passed." />
+```
+
+## Avatar (v0.1.0)
+
+Image avatar with automatic initials fallback when the image is missing or fails to load.
+
+Import: `import { Avatar } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, image, fallback
+
+Props:
+- `name`: string (required) — Used for alt text and fallback initials.
+- `src`: string
+- `size`: "sm" | "md" | "lg" = "md"
+
+Example:
+```tsx
+<Avatar name="Ada Lovelace" src="/ada.png" />
+```
+
+## Badge (v0.1.0)
+
+Compact status label with tone and variant axes.
+
+Import: `import { Badge } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root
+
+Props:
+- `variant`: "subtle" | "solid" | "outline" = "subtle"
+- `tone`: "accent" | "neutral" | "success" | "warning" | "danger" = "accent"
+
+Example:
+```tsx
+<Badge tone="success">Active</Badge>
+```
+
+## Breadcrumb (v0.1.0)
+
+Navigation trail; the last item is marked aria-current=page automatically.
+
+Import: `import { Breadcrumb } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, list, item, link, separator
+
+Props:
+- `items`: { label: string; href?: string }[] (required)
+- `separator`: ReactNode = "/"
+
+Example:
+```tsx
+<Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Settings", href: "/settings" }, { label: "Billing" }]} />
+```
+
+## Button (v0.1.0)
+
+Action button with variants, sizes, and a loading state that preserves width and sets aria-busy.
+
+Import: `import { Button } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, spinner, label
+
+Props:
+- `variant`: "solid" | "outline" | "ghost" | "danger" = "solid"
+- `size`: "sm" | "md" | "lg" = "md"
+- `loading`: boolean = false — Shows spinner, disables interaction, sets aria-busy.
+- `...rest`: React.ButtonHTMLAttributes<HTMLButtonElement>
+
+Keyboard:
+- Enter / Space: activates
+
+Example:
+```tsx
+<Button onClick={save}>Save</Button>
+```
+
+## Card (v0.1.0)
+
+Composable surface: Root, Header, Title, Description, Content, Footer parts.
+
+Import: `import { Card } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, header, title, description, content, footer
+
+Props:
+- `Root.interactive`: boolean — Hover affordance for clickable cards.
+
+Example:
+```tsx
+<Card.Root>
+  <Card.Header>
+    <Card.Title>Usage</Card.Title>
+    <Card.Description>Last 30 days</Card.Description>
+  </Card.Header>
+  <Card.Content>...</Card.Content>
+  <Card.Footer><Button size="sm">View report</Button></Card.Footer>
+</Card.Root>
+```
+
+## Checkbox (v0.1.0)
+
+Checkbox built on a visually-hidden native input: native form submission and accessibility for free.
+
+Import: `import { Checkbox } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, control, indicator, label
+
+Props:
+- `label`: ReactNode (required)
+- `checked`: boolean — Controlled value.
+- `defaultChecked`: boolean = false
+- `onCheckedChange`: (checked: boolean) => void
+- `disabled`: boolean
+- `name / value / required`: native form props
+
+Keyboard:
+- Space: toggles
+
+Example:
+```tsx
+<Checkbox label="Accept terms" onCheckedChange={setAccepted} />
+```
+
+## Dialog (v0.1.0)
+
+Modal dialog driven by a core state machine; focus trap, scroll lock, Escape and backdrop dismissal handled automatically.
+
+Import: `import { Dialog, useDialog } from "@tessera/react";`
+
+Anatomy parts (stable selectors): trigger, backdrop, positioner, content, title, description, close
+
+Props:
+- `Root.open / defaultOpen`: boolean — Controlled / uncontrolled.
+- `Root.onOpenChange`: (open: boolean) => void
+- `Content.closeOnOutsideClick`: boolean = true
+
+Keyboard:
+- Escape: closes
+- Tab: cycles within the dialog (focus trap)
+
+Example:
+```tsx
+<Dialog.Root>
+  <Dialog.Trigger>Delete account</Dialog.Trigger>
+  <Dialog.Content>
+    <Dialog.Title>Are you sure?</Dialog.Title>
+    <Dialog.Description>This cannot be undone.</Dialog.Description>
+    <Dialog.Close />
+  </Dialog.Content>
+</Dialog.Root>
+```
+
+## Kbd (v0.1.0)
+
+Keyboard key cap for shortcuts in docs and menus.
+
+Import: `import { Kbd } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root
+
+Props:
+- `...rest`: React.HTMLAttributes<HTMLElement>
+
+Example:
+```tsx
+<Kbd>⌘</Kbd> + <Kbd>K</Kbd>
+```
+
+## Menu (v0.1.0)
+
+Dropdown action menu (WAI-ARIA menu pattern): roving focus, Home/End, Escape, outside-click dismissal.
+
+Import: `import { Menu } from "@tessera/react";`
+
+Anatomy parts (stable selectors): trigger, positioner, content, item, separator, groupLabel
+
+Props:
+- `Root.placement`: Placement (floating-ui) = "bottom-start"
+- `Root.onOpenChange`: (open: boolean) => void
+- `Item.onSelect`: () => void — Menu closes automatically after selection.
+- `Item.danger`: boolean
+
+Keyboard:
+- ArrowDown/ArrowUp: move focus (wraps)
+- Home/End: first/last item
+- Enter: selects item
+- Escape: closes and refocuses trigger
+
+Example:
+```tsx
+<Menu.Root>
+  <Menu.Trigger>Actions</Menu.Trigger>
+  <Menu.Content>
+    <Menu.Item onSelect={rename}>Rename</Menu.Item>
+    <Menu.Separator />
+    <Menu.Item danger onSelect={remove}>Delete</Menu.Item>
+  </Menu.Content>
+</Menu.Root>
+```
+
+## Pagination (v0.1.0)
+
+Page navigation with sibling windows and ellipsis collapsing (logic lives in @tessera/core).
+
+Import: `import { Pagination } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, list, item, ellipsis, prev, next
+
+Props:
+- `count`: number (required) — Total pages.
+- `page / defaultPage`: number
+- `onPageChange`: (page: number) => void
+- `siblings`: number = 1
+
+Example:
+```tsx
+<Pagination count={20} defaultPage={7} onPageChange={load} />
+```
+
+## Popover (v0.1.0)
+
+Non-modal floating panel anchored to its trigger (floating-ui positioning with flip/shift).
+
+Import: `import { Popover } from "@tessera/react";`
+
+Anatomy parts (stable selectors): trigger, positioner, content, title, arrow, close
+
+Props:
+- `Root.defaultOpen`: boolean
+- `Root.onOpenChange`: (open: boolean) => void
+- `Root.placement`: Placement (floating-ui) = "bottom"
+
+Keyboard:
+- Escape: closes and refocuses trigger
+
+Example:
+```tsx
+<Popover.Root placement="bottom-start">
+  <Popover.Trigger>Filters</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Title>Filters</Popover.Title>
+    ...
+  </Popover.Content>
+</Popover.Root>
+```
+
+## Progress (v0.1.0)
+
+Determinate or indeterminate progress bar with full progressbar semantics.
+
+Import: `import { Progress } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, valueText, track, fill
+
+Props:
+- `label`: string
+- `value`: number — Omit for indeterminate.
+- `max`: number = 100
+- `showValueText`: boolean = true
+
+Example:
+```tsx
+<Progress label="Uploading" value={64} />
+```
+
+## RadioGroup (v0.1.0)
+
+Compound radio group built on native radio inputs (arrow-key navigation comes from the browser).
+
+Import: `import { RadioGroup } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, item, control, indicator, itemLabel
+
+Props:
+- `Root.label`: string
+- `Root.value / defaultValue`: string
+- `Root.onValueChange`: (value: string) => void
+- `Root.orientation`: "vertical" | "horizontal" = "vertical"
+- `Item.value`: string (required)
+- `Item.label`: ReactNode (required)
+- `Item.disabled`: boolean
+
+Keyboard:
+- ArrowUp/Down/Left/Right: moves selection (native)
+
+Example:
+```tsx
+<RadioGroup.Root label="Plan" defaultValue="pro" onValueChange={setPlan}>
+  <RadioGroup.Item value="free" label="Free" />
+  <RadioGroup.Item value="pro" label="Pro" />
+</RadioGroup.Root>
+```
+
+## Select (v0.1.0)
+
+Single-select listbox (combobox pattern): typeahead, disabled-item skipping, keyboard navigation, anchored positioning.
+
+Import: `import { Select } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, trigger, value, indicator, positioner, content, item, itemText, itemIndicator
+
+Props:
+- `items`: { value: string; label: string; disabled?: boolean }[] (required)
+- `label`: string
+- `placeholder`: string = "Select an option"
+- `value / defaultValue`: string | null
+- `onValueChange`: (value: string | null) => void
+- `disabled`: boolean
+
+Keyboard:
+- ArrowDown/ArrowUp: opens / moves highlight
+- Enter / Space: selects highlighted option
+- Home/End: first/last option
+- printable chars: typeahead
+- Escape: closes
+
+Example:
+```tsx
+<Select label="Framework" items={[{ value: "react", label: "React" }, { value: "vue", label: "Vue" }]} onValueChange={setFramework} />
+```
+
+## Separator (v0.1.0)
+
+Horizontal or vertical rule with proper separator semantics.
+
+Import: `import { Separator } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root
+
+Props:
+- `orientation`: "horizontal" | "vertical" = "horizontal"
+- `decorative`: boolean = false — Hides from assistive tech when purely visual.
+
+Example:
+```tsx
+<Separator />
+```
+
+## Skeleton (v0.1.0)
+
+Loading placeholder with text/circle/rect variants and reduced-motion support.
+
+Import: `import { Skeleton } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root
+
+Props:
+- `variant`: "rect" | "text" | "circle" = "rect"
+- `width / height`: number | string
+
+Example:
+```tsx
+<Skeleton variant="circle" width={40} height={40} />
+```
+
+## Slider (v0.1.0)
+
+Single-value slider on a native range input: browser-grade keyboard, touch, and a11y.
+
+Import: `import { Slider } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, valueText, control
+
+Props:
+- `label`: string (required)
+- `value / defaultValue`: number
+- `onValueChange`: (value: number) => void
+- `min / max / step`: number = 0 / 100 / 1
+- `formatValue`: (value: number) => string
+
+Keyboard:
+- Arrow keys: step
+- Home/End: min/max
+
+Example:
+```tsx
+<Slider label="Volume" defaultValue={40} formatValue={(v) => `${v}%`} />
+```
+
+## Spinner (v0.1.0)
+
+Indeterminate loading indicator with an accessible label.
+
+Import: `import { Spinner } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root
+
+Props:
+- `size`: "sm" | "md" | "lg" = "md"
+- `label`: string = "Loading"
+
+Example:
+```tsx
+<Spinner size="lg" label="Loading results" />
+```
+
+## Switch (v0.1.0)
+
+On/off toggle backed by a native role=switch input.
+
+Import: `import { Switch } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, control, thumb, label
+
+Props:
+- `label`: ReactNode (required)
+- `checked`: boolean
+- `defaultChecked`: boolean = false
+- `onCheckedChange`: (checked: boolean) => void
+- `disabled`: boolean
+- `name / value`: native form props
+
+Keyboard:
+- Space: toggles
+
+Example:
+```tsx
+<Switch label="Email notifications" defaultChecked onCheckedChange={save} />
+```
+
+## Table (v0.1.0)
+
+Composable data table: Root (scroll container), Header, Body, Row, Head, Cell, Caption.
+
+Import: `import { Table } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, table, caption, header, body, row, head, cell
+
+Props:
+- `Root.striped`: boolean
+- `Root.hoverable`: boolean
+
+Example:
+```tsx
+<Table.Root striped hoverable>
+  <Table.Header>
+    <Table.Row><Table.Head>Name</Table.Head><Table.Head>Status</Table.Head></Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row><Table.Cell>api-server</Table.Cell><Table.Cell><Badge tone="success">Healthy</Badge></Table.Cell></Table.Row>
+  </Table.Body>
+</Table.Root>
+```
+
+## Tabs (v0.1.0)
+
+WAI-ARIA tabs with roving focus and automatic activation.
+
+Import: `import { Tabs } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, list, trigger, content
+
+Props:
+- `Root.defaultValue`: string (required)
+- `Root.value / onValueChange`: controlled mode
+- `Root.orientation`: "horizontal" | "vertical" = "horizontal"
+- `Trigger.value / Content.value`: string (required)
+
+Keyboard:
+- ArrowLeft/ArrowRight: moves and activates (horizontal)
+- Home/End: first/last tab
+
+Example:
+```tsx
+<Tabs.Root defaultValue="account">
+  <Tabs.List>
+    <Tabs.Trigger value="account">Account</Tabs.Trigger>
+    <Tabs.Trigger value="security">Security</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="account">...</Tabs.Content>
+  <Tabs.Content value="security">...</Tabs.Content>
+</Tabs.Root>
+```
+
+## Tag (v0.1.0)
+
+Chip for filters and selections, optionally dismissible.
+
+Import: `import { Tag } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, close
+
+Props:
+- `tone`: "neutral" | "accent" | "danger" = "neutral"
+- `onDismiss`: () => void — Renders a labelled remove button when set.
+
+Keyboard:
+- Enter / Space: activates the remove button
+
+Example:
+```tsx
+<Tag tone="accent" onDismiss={() => remove(id)}>react</Tag>
+```
+
+## TextField (v0.1.0)
+
+Labeled text input with description and error messaging, all wired with aria-describedby automatically.
+
+Import: `import { TextField } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, input, description, error
+
+Props:
+- `label`: string (required)
+- `description`: string — Helper text linked via aria-describedby.
+- `error`: string — Marks the field invalid and announces via role=alert.
+- `...rest`: React.InputHTMLAttributes<HTMLInputElement>
+
+Example:
+```tsx
+<TextField label="Email" type="email" placeholder="you@example.com" />
+```
+
+## Textarea (v0.1.0)
+
+Multi-line text input with label, description, and error wiring (mirrors TextField).
+
+Import: `import { Textarea } from "@tessera/react";`
+
+Anatomy parts (stable selectors): root, label, input, description, error
+
+Props:
+- `label`: string (required)
+- `description`: string
+- `error`: string
+- `...rest`: React.TextareaHTMLAttributes<HTMLTextAreaElement>
+
+Example:
+```tsx
+<Textarea label="Feedback" rows={4} description="Markdown supported." />
+```
+
+## Toast (v0.1.0)
+
+Imperative notifications backed by a framework-agnostic queue with auto-dismiss, hover pause/resume, and a visible-toast cap.
+
+Import: `import { ToastProvider, useToast } from "@tessera/react";`
+
+Anatomy parts (stable selectors): viewport, root, title, description, close
+
+Props:
+- `ToastProvider.duration`: number = 5000
+- `ToastProvider.max`: number = 5
+- `toast(options)`: { title; description?; type?: "info"|"success"|"warning"|"danger"; duration? }
+- `toast.dismiss(id) / toast.clear()`: imperative controls
+
+Example:
+```tsx
+const toast = useToast();
+toast({ title: "Saved", type: "success" });
+```
+
+## Tooltip (v0.1.0)
+
+Hover/focus tooltip with hover-intent delays driven by a four-state core machine (no flicker on quick re-entry).
+
+Import: `import { Tooltip } from "@tessera/react";`
+
+Anatomy parts (stable selectors): trigger, positioner, content, arrow
+
+Props:
+- `Root.openDelay`: number = 600
+- `Root.closeDelay`: number = 200
+- `Root.placement`: Placement (floating-ui) = "top"
+
+Keyboard:
+- Focus: opens immediately (no delay)
+- Escape: closes
+
+Example:
+```tsx
+<Tooltip.Root>
+  <Tooltip.Trigger>?</Tooltip.Trigger>
+  <Tooltip.Content>More information</Tooltip.Content>
+</Tooltip.Root>
+```

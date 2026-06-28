@@ -1,0 +1,22 @@
+{
+  "name": "tag",
+  "displayName": "Tag",
+  "version": "0.1.0",
+  "description": "Chip for filters and selections, optionally dismissible.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "tag.tsx",
+      "hash": "0441680f2c776724",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { tagAnatomy } from \"@tessera/core\";\nimport { CloseIcon } from \"../utils/icons\";\n\nexport interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {\n  tone?: \"neutral\" | \"accent\" | \"danger\";\n  /** When provided, renders a remove button that calls this handler. */\n  onDismiss?: () => void;\n}\n\nexport const Tag = React.forwardRef<HTMLSpanElement, TagProps>(function Tag(\n  { tone = \"neutral\", onDismiss, children, ...rest },\n  ref\n) {\n  return (\n    <span {...tagAnatomy.attrs(\"root\")} data-tone={tone} ref={ref} {...rest}>\n      <span {...tagAnatomy.attrs(\"label\")}>{children}</span>\n      {onDismiss && (\n        <button\n          type=\"button\"\n          {...tagAnatomy.attrs(\"close\")}\n          aria-label={`Remove ${typeof children === \"string\" ? children : \"tag\"}`}\n          onClick={onDismiss}\n        >\n          <CloseIcon />\n        </button>\n      )}\n    </span>\n  );\n});\n"
+    },
+    {
+      "path": "tag.css",
+      "hash": "f6be1df1f13e311c",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"tag\"][data-part=\"root\"] {\n    --tag-bg: var(--ts-bg-subtle);\n    --tag-fg: var(--ts-fg-default);\n\n    display: inline-flex;\n    align-items: center;\n    gap: var(--ts-space-1);\n    border: 1px solid var(--ts-border-muted);\n    border-radius: var(--ts-radius-md);\n    background: var(--tag-bg);\n    color: var(--tag-fg);\n    font-size: var(--ts-font-size-xs);\n    font-weight: var(--ts-font-weight-medium);\n    line-height: 1;\n    padding: 4px var(--ts-space-2);\n  }\n\n  [data-scope=\"tag\"][data-part=\"root\"][data-tone=\"accent\"] {\n    --tag-bg: var(--ts-accent-subtle);\n    --tag-fg: var(--ts-accent-fg);\n    border-color: transparent;\n  }\n\n  [data-scope=\"tag\"][data-part=\"root\"][data-tone=\"danger\"] {\n    --tag-bg: var(--ts-danger-subtle);\n    --tag-fg: var(--ts-danger-fg);\n    border-color: transparent;\n  }\n\n  [data-scope=\"tag\"][data-part=\"close\"] {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 1rem;\n    height: 1rem;\n    margin-right: -2px;\n    border: none;\n    border-radius: var(--ts-radius-sm);\n    background: transparent;\n    color: inherit;\n    cursor: pointer;\n    opacity: 0.7;\n    font-size: 0.65rem;\n  }\n\n  [data-scope=\"tag\"][data-part=\"close\"]:hover {\n    opacity: 1;\n    background: color-mix(in srgb, currentColor 15%, transparent);\n  }\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "kbd",
+  "displayName": "Kbd",
+  "version": "0.1.0",
+  "category": "data-display",
+  "import": "import { Kbd } from \"@tessera/react\";",
+  "description": "Keyboard key cap for shortcuts in docs and menus.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "kbd",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "...rest",
+      "type": "React.HTMLAttributes<HTMLElement>"
+    }
+  ],
+  "a11y": {
+    "roles": [],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"kbd\"][data-part=\"root\"]"
+    ]
+  },
+  "examples": [
+    "<Kbd>⌘</Kbd> + <Kbd>K</Kbd>"
+  ]
+}

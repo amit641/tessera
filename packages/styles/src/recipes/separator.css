@@ -1,0 +1,18 @@
+@layer tessera.recipes {
+  [data-scope="separator"][data-part="root"] {
+    border: none;
+    background: var(--ts-border-muted);
+  }
+
+  [data-scope="separator"][data-part="root"][data-orientation="horizontal"] {
+    width: 100%;
+    height: 1px;
+    margin: var(--ts-space-2) 0;
+  }
+
+  [data-scope="separator"][data-part="root"][data-orientation="vertical"] {
+    width: 1px;
+    align-self: stretch;
+    margin: 0 var(--ts-space-2);
+  }
+}

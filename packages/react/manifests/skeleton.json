@@ -1,0 +1,44 @@
+{
+  "name": "skeleton",
+  "displayName": "Skeleton",
+  "version": "0.1.0",
+  "category": "feedback",
+  "import": "import { Skeleton } from \"@tessera/react\";",
+  "description": "Loading placeholder with text/circle/rect variants and reduced-motion support.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"rect\" | \"text\" | \"circle\"",
+      "default": "\"rect\""
+    },
+    {
+      "name": "width / height",
+      "type": "number | string"
+    }
+  ],
+  "a11y": {
+    "roles": [],
+    "keyboard": [],
+    "notes": [
+      "aria-hidden; announce loading state separately (e.g. Spinner with a label)."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"skeleton\"][data-part=\"root\"]"
+    ],
+    "stateAttributes": [
+      "data-variant"
+    ]
+  },
+  "examples": [
+    "<Skeleton variant=\"circle\" width={40} height={40} />"
+  ]
+}

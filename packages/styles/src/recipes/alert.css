@@ -1,0 +1,56 @@
+@layer tessera.recipes {
+  [data-scope="alert"][data-part="root"] {
+    --alert-accent: var(--ts-accent-default);
+    --alert-bg: var(--ts-accent-subtle);
+    --alert-fg: var(--ts-accent-fg);
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--ts-space-3);
+    row-gap: var(--ts-space-1);
+    align-items: start;
+    border: 1px solid var(--ts-border-muted);
+    border-left: 3px solid var(--alert-accent);
+    border-radius: var(--ts-radius-lg);
+    background: var(--alert-bg);
+    padding: var(--ts-space-3) var(--ts-space-4);
+  }
+
+  [data-scope="alert"][data-part="root"][data-type="success"] {
+    --alert-accent: var(--ts-success-default);
+    --alert-bg: var(--ts-success-subtle);
+    --alert-fg: var(--ts-success-fg);
+  }
+
+  [data-scope="alert"][data-part="root"][data-type="warning"] {
+    --alert-accent: var(--ts-warning-default);
+    --alert-bg: var(--ts-warning-subtle);
+    --alert-fg: var(--ts-warning-fg);
+  }
+
+  [data-scope="alert"][data-part="root"][data-type="danger"] {
+    --alert-accent: var(--ts-danger-default);
+    --alert-bg: var(--ts-danger-subtle);
+    --alert-fg: var(--ts-danger-fg);
+  }
+
+  [data-scope="alert"][data-part="icon"] {
+    display: inline-flex;
+    color: var(--alert-fg);
+    margin-top: 2px;
+    grid-row: span 2;
+  }
+
+  [data-scope="alert"][data-part="title"] {
+    font-size: var(--ts-font-size-sm);
+    font-weight: var(--ts-font-weight-semibold);
+    color: var(--alert-fg);
+  }
+
+  [data-scope="alert"][data-part="description"] {
+    grid-column: 2;
+    font-size: var(--ts-font-size-sm);
+    color: var(--ts-fg-muted);
+    line-height: var(--ts-font-leading-normal);
+  }
+}

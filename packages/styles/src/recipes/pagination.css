@@ -1,0 +1,53 @@
+@layer tessera.recipes {
+  [data-scope="pagination"][data-part="list"] {
+    display: flex;
+    align-items: center;
+    gap: var(--ts-space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  [data-scope="pagination"][data-part="item"],
+  [data-scope="pagination"][data-part="prev"],
+  [data-scope="pagination"][data-part="next"] {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 var(--ts-space-2);
+    border: 1px solid transparent;
+    border-radius: var(--ts-radius-md);
+    background: transparent;
+    color: var(--ts-fg-muted);
+    font-size: var(--ts-font-size-sm);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+
+  [data-scope="pagination"] [data-part="item"]:hover:not(:disabled),
+  [data-scope="pagination"] [data-part="prev"]:hover:not(:disabled),
+  [data-scope="pagination"] [data-part="next"]:hover:not(:disabled) {
+    background: var(--ts-bg-subtle);
+    color: var(--ts-fg-default);
+  }
+
+  [data-scope="pagination"][data-part="item"][aria-current="page"] {
+    background: var(--ts-accent-default);
+    border-color: var(--ts-accent-default);
+    color: var(--ts-fg-onAccent);
+    font-weight: var(--ts-font-weight-semibold);
+  }
+
+  [data-scope="pagination"][data-part="ellipsis"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    color: var(--ts-fg-subtle);
+    user-select: none;
+  }
+}

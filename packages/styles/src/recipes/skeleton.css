@@ -1,0 +1,33 @@
+@layer tessera.recipes {
+  [data-scope="skeleton"][data-part="root"] {
+    display: block;
+    background: var(--ts-bg-muted);
+    border-radius: var(--ts-radius-md);
+    animation: tessera-pulse 1.6s var(--ts-easing-standard) infinite;
+  }
+
+  [data-scope="skeleton"][data-part="root"][data-variant="text"] {
+    height: 0.9em;
+    border-radius: var(--ts-radius-sm);
+  }
+
+  [data-scope="skeleton"][data-part="root"][data-variant="circle"] {
+    border-radius: var(--ts-radius-full);
+  }
+
+  @keyframes tessera-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-scope="skeleton"][data-part="root"] {
+      animation: none;
+    }
+  }
+}

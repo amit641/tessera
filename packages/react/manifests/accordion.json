@@ -1,0 +1,91 @@
+{
+  "name": "accordion",
+  "displayName": "Accordion",
+  "version": "0.1.0",
+  "import": "import { Accordion } from \"@tessera/react\";",
+  "description": "Disclosure list with single or multiple open items.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "item",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "header",
+      "element": "h3",
+      "stable": true
+    },
+    {
+      "part": "trigger",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "indicator",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div[role=region]",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.multiple",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "Root.value / defaultValue",
+      "type": "string[]"
+    },
+    {
+      "name": "Root.onValueChange",
+      "type": "(value: string[]) => void"
+    },
+    {
+      "name": "Item.value",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "Item.disabled",
+      "type": "boolean"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "button trigger with aria-expanded",
+      "region content"
+    ],
+    "keyboard": [
+      {
+        "key": "Enter / Space",
+        "action": "toggles item"
+      }
+    ],
+    "notes": [
+      "Trigger is wrapped in an h3 heading per the ARIA accordion pattern."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"accordion\"][data-part=\"trigger\"]"
+    ],
+    "stateAttributes": [
+      "data-state=open|closed",
+      "data-disabled"
+    ]
+  },
+  "examples": [
+    "<Accordion.Root multiple defaultValue={[\"a\"]}>\n  <Accordion.Item value=\"a\">\n    <Accordion.Trigger>Section A</Accordion.Trigger>\n    <Accordion.Content>Content A</Accordion.Content>\n  </Accordion.Item>\n</Accordion.Root>"
+  ],
+  "category": "data-display"
+}

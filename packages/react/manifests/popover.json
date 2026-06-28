@@ -1,0 +1,80 @@
+{
+  "name": "popover",
+  "displayName": "Popover",
+  "version": "0.1.0",
+  "import": "import { Popover } from \"@tessera/react\";",
+  "description": "Non-modal floating panel anchored to its trigger (floating-ui positioning with flip/shift).",
+  "anatomy": [
+    {
+      "part": "trigger",
+      "element": "button",
+      "stable": true
+    },
+    {
+      "part": "positioner",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "content",
+      "element": "div[role=dialog]",
+      "stable": true
+    },
+    {
+      "part": "title",
+      "element": "h3",
+      "stable": true
+    },
+    {
+      "part": "arrow",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "close",
+      "element": "button",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.defaultOpen",
+      "type": "boolean"
+    },
+    {
+      "name": "Root.onOpenChange",
+      "type": "(open: boolean) => void"
+    },
+    {
+      "name": "Root.placement",
+      "type": "Placement (floating-ui)",
+      "default": "\"bottom\""
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "dialog (non-modal)"
+    ],
+    "keyboard": [
+      {
+        "key": "Escape",
+        "action": "closes and refocuses trigger"
+      }
+    ],
+    "notes": [
+      "Outside pointer-down closes the popover."
+    ]
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"popover\"][data-part=\"content\"]"
+    ],
+    "stateAttributes": [
+      "data-state=open"
+    ]
+  },
+  "examples": [
+    "<Popover.Root placement=\"bottom-start\">\n  <Popover.Trigger>Filters</Popover.Trigger>\n  <Popover.Content>\n    <Popover.Title>Filters</Popover.Title>\n    ...\n  </Popover.Content>\n</Popover.Root>"
+  ],
+  "category": "overlay"
+}

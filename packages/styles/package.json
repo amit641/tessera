@@ -1,0 +1,12 @@
+{
+  "name": "@tessera/styles",
+  "version": "0.1.0",
+  "description": "Tessera zero-runtime CSS recipes. All rules live in @layer tessera and target stable [data-scope][data-part] anatomy attributes.",
+  "type": "module",
+  "exports": {
+    "./index.css": "./src/index.css",
+    "./base.css": "./src/base.css",
+    "./recipes/*": "./src/recipes/*"
+  },
+  "files": ["src"]
+}

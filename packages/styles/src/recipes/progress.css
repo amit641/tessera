@@ -1,0 +1,53 @@
+@layer tessera.recipes {
+  [data-scope="progress"][data-part="root"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ts-space-1);
+    width: 100%;
+  }
+
+  [data-scope="progress"][data-part="label"] {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--ts-font-size-sm);
+    font-weight: var(--ts-font-weight-medium);
+    color: var(--ts-fg-default);
+  }
+
+  [data-scope="progress"][data-part="valueText"] {
+    color: var(--ts-fg-muted);
+    font-weight: var(--ts-font-weight-regular);
+    font-variant-numeric: tabular-nums;
+  }
+
+  [data-scope="progress"][data-part="track"] {
+    position: relative;
+    height: 0.5rem;
+    border-radius: var(--ts-radius-full);
+    background: var(--ts-bg-muted);
+    overflow: hidden;
+  }
+
+  [data-scope="progress"][data-part="fill"] {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--progress-value, 0%);
+    border-radius: inherit;
+    background: var(--ts-accent-default);
+    transition: width var(--ts-duration-normal) var(--ts-easing-standard);
+  }
+
+  [data-scope="progress"][data-part="root"][data-indeterminate] [data-part="fill"] {
+    width: 40%;
+    animation: tessera-progress-slide 1.2s var(--ts-easing-standard) infinite;
+  }
+
+  @keyframes tessera-progress-slide {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(350%);
+    }
+  }
+}

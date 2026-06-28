@@ -1,0 +1,99 @@
+{
+  "name": "radio-group",
+  "displayName": "RadioGroup",
+  "version": "0.1.0",
+  "import": "import { RadioGroup } from \"@tessera/react\";",
+  "description": "Compound radio group built on native radio inputs (arrow-key navigation comes from the browser).",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div[role=radiogroup]",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "item",
+      "element": "label",
+      "stable": true
+    },
+    {
+      "part": "control",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "indicator",
+      "element": "span",
+      "stable": true
+    },
+    {
+      "part": "itemLabel",
+      "element": "span",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "Root.label",
+      "type": "string"
+    },
+    {
+      "name": "Root.value / defaultValue",
+      "type": "string"
+    },
+    {
+      "name": "Root.onValueChange",
+      "type": "(value: string) => void"
+    },
+    {
+      "name": "Root.orientation",
+      "type": "\"vertical\" | \"horizontal\"",
+      "default": "\"vertical\""
+    },
+    {
+      "name": "Item.value",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "Item.label",
+      "type": "ReactNode",
+      "required": true
+    },
+    {
+      "name": "Item.disabled",
+      "type": "boolean"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "radiogroup",
+      "radio (native inputs)"
+    ],
+    "keyboard": [
+      {
+        "key": "ArrowUp/Down/Left/Right",
+        "action": "moves selection (native)"
+      }
+    ],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"radio-group\"][data-part=\"item\"]"
+    ],
+    "stateAttributes": [
+      "data-state=checked|unchecked",
+      "data-orientation",
+      "data-disabled"
+    ]
+  },
+  "examples": [
+    "<RadioGroup.Root label=\"Plan\" defaultValue=\"pro\" onValueChange={setPlan}>\n  <RadioGroup.Item value=\"free\" label=\"Free\" />\n  <RadioGroup.Item value=\"pro\" label=\"Pro\" />\n</RadioGroup.Root>"
+  ],
+  "category": "forms"
+}

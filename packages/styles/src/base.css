@@ -1,0 +1,54 @@
+/*
+ * Tessera base layer.
+ *
+ * Layer order contract: tokens < base < recipes — and ALL of it sits in the
+ * `tessera` parent layer. Unlayered application CSS always beats layered CSS,
+ * so user overrides win against Tessera without specificity hacks or !important.
+ */
+@layer tessera.tokens, tessera.base, tessera.recipes;
+
+@layer tessera.base {
+  /* Scoped box-model reset: applies only inside Tessera components. */
+  [data-scope],
+  [data-scope] *,
+  [data-scope]::before,
+  [data-scope]::after {
+    box-sizing: border-box;
+  }
+
+  [data-scope][data-part] {
+    margin: 0;
+    font-family: var(--ts-font-family-sans);
+  }
+
+  /* One consistent focus ring across the entire system. */
+  [data-scope][data-part]:focus-visible {
+    outline: 2px solid var(--ts-ring-color);
+    outline-offset: 2px;
+  }
+
+  [data-scope][data-part][data-disabled],
+  [data-scope][data-part]:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  /* Visually-hidden native inputs (checkbox/switch/radio keep real form semantics). */
+  [data-scope] [data-visually-hidden] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* Focus ring lands on the visual control when its hidden input has focus. */
+  [data-scope] [data-visually-hidden]:focus-visible + [data-part] {
+    outline: 2px solid var(--ts-ring-color);
+    outline-offset: 2px;
+  }
+}

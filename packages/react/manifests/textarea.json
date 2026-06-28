@@ -1,0 +1,72 @@
+{
+  "name": "textarea",
+  "displayName": "Textarea",
+  "version": "0.1.0",
+  "category": "forms",
+  "import": "import { Textarea } from \"@tessera/react\";",
+  "description": "Multi-line text input with label, description, and error wiring (mirrors TextField).",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "stable": true
+    },
+    {
+      "part": "label",
+      "element": "label",
+      "stable": true
+    },
+    {
+      "part": "input",
+      "element": "textarea",
+      "stable": true
+    },
+    {
+      "part": "description",
+      "element": "p",
+      "stable": true
+    },
+    {
+      "part": "error",
+      "element": "p",
+      "stable": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "type": "string"
+    },
+    {
+      "name": "...rest",
+      "type": "React.TextareaHTMLAttributes<HTMLTextAreaElement>"
+    }
+  ],
+  "a11y": {
+    "roles": [
+      "textbox (native)"
+    ],
+    "keyboard": [],
+    "notes": []
+  },
+  "styling": {
+    "selectors": [
+      "[data-scope=\"textarea\"][data-part=\"input\"]"
+    ],
+    "stateAttributes": [
+      "data-invalid"
+    ]
+  },
+  "examples": [
+    "<Textarea label=\"Feedback\" rows={4} description=\"Markdown supported.\" />"
+  ]
+}

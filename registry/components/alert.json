@@ -1,0 +1,22 @@
+{
+  "name": "alert",
+  "displayName": "Alert",
+  "version": "0.1.0",
+  "description": "Inline callout for contextual feedback; danger/warning announce assertively via role=alert.",
+  "dependencies": [
+    "@tessera/core",
+    "@tessera/tokens"
+  ],
+  "files": [
+    {
+      "path": "alert.tsx",
+      "hash": "5d320edcfce05eb0",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { alertAnatomy } from \"@tessera/core\";\n\nexport type AlertType = \"info\" | \"success\" | \"warning\" | \"danger\";\n\nexport interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {\n  type?: AlertType;\n  title: string;\n  /** Optional supporting text below the title. */\n  description?: string;\n  /** Custom leading icon; a default per-type glyph is rendered otherwise. */\n  icon?: React.ReactNode;\n}\n\nconst defaultGlyphs: Record<AlertType, string> = {\n  info: \"ℹ\",\n  success: \"✓\",\n  warning: \"⚠\",\n  danger: \"✕\",\n};\n\nexport const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(\n  { type = \"info\", title, description, icon, children, ...rest },\n  ref\n) {\n  // Interruptive types announce assertively; informational ones politely.\n  const role = type === \"danger\" || type === \"warning\" ? \"alert\" : \"status\";\n  return (\n    <div {...alertAnatomy.attrs(\"root\")} data-type={type} role={role} ref={ref} {...rest}>\n      <span {...alertAnatomy.attrs(\"icon\")} aria-hidden>\n        {icon ?? defaultGlyphs[type]}\n      </span>\n      <div {...alertAnatomy.attrs(\"title\")}>{title}</div>\n      {(description || children) && (\n        <div {...alertAnatomy.attrs(\"description\")}>{description ?? children}</div>\n      )}\n    </div>\n  );\n});\n"
+    },
+    {
+      "path": "alert.css",
+      "hash": "734eb940a34f5619",
+      "content": "@layer tessera.recipes {\n  [data-scope=\"alert\"][data-part=\"root\"] {\n    --alert-accent: var(--ts-accent-default);\n    --alert-bg: var(--ts-accent-subtle);\n    --alert-fg: var(--ts-accent-fg);\n\n    display: grid;\n    grid-template-columns: auto 1fr;\n    column-gap: var(--ts-space-3);\n    row-gap: var(--ts-space-1);\n    align-items: start;\n    border: 1px solid var(--ts-border-muted);\n    border-left: 3px solid var(--alert-accent);\n    border-radius: var(--ts-radius-lg);\n    background: var(--alert-bg);\n    padding: var(--ts-space-3) var(--ts-space-4);\n  }\n\n  [data-scope=\"alert\"][data-part=\"root\"][data-type=\"success\"] {\n    --alert-accent: var(--ts-success-default);\n    --alert-bg: var(--ts-success-subtle);\n    --alert-fg: var(--ts-success-fg);\n  }\n\n  [data-scope=\"alert\"][data-part=\"root\"][data-type=\"warning\"] {\n    --alert-accent: var(--ts-warning-default);\n    --alert-bg: var(--ts-warning-subtle);\n    --alert-fg: var(--ts-warning-fg);\n  }\n\n  [data-scope=\"alert\"][data-part=\"root\"][data-type=\"danger\"] {\n    --alert-accent: var(--ts-danger-default);\n    --alert-bg: var(--ts-danger-subtle);\n    --alert-fg: var(--ts-danger-fg);\n  }\n\n  [data-scope=\"alert\"][data-part=\"icon\"] {\n    display: inline-flex;\n    color: var(--alert-fg);\n    margin-top: 2px;\n    grid-row: span 2;\n  }\n\n  [data-scope=\"alert\"][data-part=\"title\"] {\n    font-size: var(--ts-font-size-sm);\n    font-weight: var(--ts-font-weight-semibold);\n    color: var(--alert-fg);\n  }\n\n  [data-scope=\"alert\"][data-part=\"description\"] {\n    grid-column: 2;\n    font-size: var(--ts-font-size-sm);\n    color: var(--ts-fg-muted);\n    line-height: var(--ts-font-leading-normal);\n  }\n}\n"
+    }
+  ]
+}
